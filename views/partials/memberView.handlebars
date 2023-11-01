@@ -1,0 +1,44 @@
+<!-- memberView.handlebars -->
+<div>
+  <h2>Member Dashboard</h2>
+
+  <!-- Section to see the current book -->
+  <section>
+    <h3>Current Book</h3>
+    <p>Title: {{currentBook.title}}</p>
+    <p>Author: {{currentBook.author}}</p>
+    <p>Description: {{currentBook.description}}</p>
+  </section>
+
+  <!-- Section to see the discussion history -->
+  <section>
+    <h3>Discussion History</h3>
+    <ul>
+      {{#each discussions as |discussion|}}
+        <li>
+          <strong>{{discussion.user}}:</strong>
+          <p>{{discussion.message}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <!-- Form to add a message to the discussion -->
+  <section>
+    <h3>Add to Discussion</h3>
+    <form action="/add-message" method="POST">
+      <input type="hidden" name="bookId" value="{{currentBook.id}}" />
+      <textarea name="message" required placeholder="Your message"></textarea>
+      <button type="submit">Post Message</button>
+    </form>
+  </section>
+
+  <!-- Option to leave the club -->
+  <section>
+    <h3>Leave Club</h3>
+    <form action="/leave-club" method="POST">
+      <input type="hidden" name="clubId" value="{{clubId}}" />
+      <button type="submit">Leave Club</button>
+    </form>
+  </section>
+</div>
