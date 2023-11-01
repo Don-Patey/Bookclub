@@ -1,0 +1,21 @@
+{{!-- Check if the user is not a member --}}
+{{^if isMember}}
+  <div class="book-description">
+    <h2>Current Book Description</h2>
+    <p>{{currentBookDescription}}</p>
+  </div>
+
+  <div class="current-book">
+    <h2>Current Book</h2>
+    <p>{{currentBookTitle}}</p>
+  </div>
+
+  <div class="club-type">
+    <h2>Club Type</h2>
+    <p>{{clubType}}</p>
+  </div>
+
+  <div class="join-request">
+    <a href="/join">Request to Join</a>
+  </div>
+{{/if}}

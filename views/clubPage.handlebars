@@ -1,0 +1,22 @@
+<h1>Club Page</h1>
+
+<h1>{{club.name}}</h1>
+
+{{!-- Different views based on user role --}}
+{{#if userRole.isAdmin}}
+    {{!-- Admin view --}}
+    {{> adminDashboard}}
+{{else if userRole.isMember}}
+    {{!-- Member view --}}
+    {{> memberView}}
+{{else}}
+    {{!-- Non-member view --}}
+    {{> nonMemberView}}
+{{/if}}
+
+{{!-- Discussions Section --}}
+{{#each discussions as |discussion|}}
+    <div class="discussion">
+        {{discussion.text}}
+    </div>
+{{/each}}
