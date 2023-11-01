@@ -1,0 +1,83 @@
+<!-- adminDashboard.handlebars -->
+<div>
+  <h2>Admin Dashboard</h2>
+
+  <!-- Form to update club name -->
+  <form action="/update-club-name" method="POST">
+    <label for="clubName">Club Name:</label>
+    <input type="text" id="clubName" name="clubName" value="{{clubName}}" required />
+    <button type="submit">Update Club Name</button>
+  </form>
+
+  <!-- Form to update club description -->
+  <form action="/update-club-description" method="POST">
+    <label for="clubDescription">Club Description:</label>
+    <textarea id="clubDescription" name="clubDescription" required>{{clubDescription}}</textarea>
+    <button type="submit">Update Description</button>
+  </form>
+
+  <!-- Form to update club type -->
+  <form action="/update-club-type" method="POST">
+    <label for="clubType">Club Type:</label>
+    <select id="clubType" name="clubType" required>
+      <option value="fiction" {{#ifEquals clubType 'fiction'}}selected{{/ifEquals}}>Fiction</option>
+      <option value="non-fiction" {{#ifEquals clubType 'non-fiction'}}selected{{/ifEquals}}>Non-Fiction</option>
+      <!-- Add other club types as needed -->
+    </select>
+    <button type="submit">Update Club Type</button>
+  </form>
+
+  <!-- Section to show the current book -->
+  <section>
+    <h3>Current Book</h3>
+    <p>{{currentBook.title}} by {{currentBook.author}}</p>
+    <!-- Button to navigate to book list page -->
+    <a href="/book-list" role="button">Select Current Book</a>
+  </section>
+
+  <!-- Section for discussion history -->
+  <section>
+    <h3>Discussion History</h3>
+    <ul>
+      {{#each discussions as |discussion|}}
+        <li>{{discussion.message}} - {{discussion.user}}</li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <!-- Form to add a message to the discussion -->
+  <form action="/add-message" method="POST">
+    <label for="message">Your Message:</label>
+    <textarea id="message" name="message" required></textarea>
+    <button type="submit">Post Message</button>
+  </form>
+
+  <!-- Section to send invites to friends -->
+  <section>
+    <h3>Invite Friends</h3>
+    <form action="/send-invites" method="POST">
+      <label for="friendEmail">Friend's Email:</label>
+      <input type="email" id="friendEmail" name="friendEmail" required />
+      <button type="submit">Send Invite</button>
+    </form>
+  </section>
+
+  <!-- Section to approve requests to join -->
+  <section>
+    <h3>Approve Join Requests</h3>
+    {{#each joinRequests as |request|}}
+      <div>
+        <p>{{request.userName}} - {{request.userEmail}}</p>
+        <form action="/approve-request" method="POST">
+          <input type="hidden" name="userId" value="{{request.userId}}" />
+          <button type="submit">Approve</button>
+        </form>
+      </div>
+    {{/each}}
+  </section>
+</div>
+
+<script src="/path/to/your/helpers.js"></script>
+
+
+</div>
