@@ -7,7 +7,14 @@
 
   <div class="current-book">
     <h2>Current Book</h2>
-    <p>{{club.current_book_id}}</p>
+       {{#each bookList}}
+        {{#if (eq id ../club.current_book_id)}}
+          <p>Title: {{name}}</p>
+          <p>Author: TODO</p>
+          <p>Description: {{description}}</p>  
+          {{/if}}
+      {{/each}}</p>
+  </section>
   </div>
 
   <div class="club-type">
