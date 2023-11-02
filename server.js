@@ -114,8 +114,8 @@ app.get("/clubPage/:id", async (req, res) => {
   // Mimicking a userRole object
   const userRole = {
     isAdmin: false,
-    isMember: false,
-    isNonMember: true,
+    isMember: true,
+    isNonMember: false,
   };
 
   // Render the club page with the necessary data
