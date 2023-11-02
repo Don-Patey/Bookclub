@@ -13,12 +13,20 @@
   <!-- Section to see the discussion history -->
   <section>
     <h3>Discussion History</h3>
+    
     <ul>
       {{#each discussions as |discussion|}}
-        <li>
-          <strong>{{discussion.user}}:</strong>
-          <p>{{discussion.text}}</p>
-        </li>
+        
+          {{#if (eq ../club.id discussion.club_id)}}
+            {{#each ../users}}
+              {{#if (eq id discussion.user_id)}}
+              <li>
+              <strong>{{name}}</strong> ({{discussion.created_on}}) {{discussion.text}}
+              </li>
+              {{/if}}
+            {{/each}}
+        {{/if}}
+ 
       {{/each}}
     </ul>
   </section>

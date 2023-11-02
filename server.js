@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
+const helpers = require("handlebars-helpers")();
 const Books = require("./models/Books");
 //const routes = require('./controllers');
 
@@ -11,17 +12,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({
-  helpers: {
-    ifEquals: function (arg1, arg2, options) {
-      return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-    },
-    // ... other helpers you might have
-  },
-  // ... other configuration options
-});
-
-app.engine("handlebars", hbs.engine);
+app.engine("handlebars", exphbs.engine({ helpers }));
 app.set("view engine", "handlebars");
 
 app.use(express.json());
@@ -96,10 +87,26 @@ app.get("/clubPage/:id", async (req, res) => {
     {
       id: 1,
       text: "I loved the latest book!",
-      created_on: new Date(),
+      created_on: "Nov 2, 2023",
       user_id: 1,
       club_id: 1,
       book_id: 1,
+    },
+    {
+      id: 2,
+      text: "It was ok - I liked some parts of it",
+      created_on: "Nov 2, 2023",
+      user_id: 2,
+      club_id: 1,
+      book_id: 1,
+    },
+    {
+      id: 3,
+      text: "Great book",
+      created_on: "Nov 1, 2023",
+      user_id: 3,
+      club_id: 2,
+      book_id: 2,
     },
   ];
   // Mimicking a membership object
@@ -118,8 +125,15 @@ app.get("/clubPage/:id", async (req, res) => {
     isNonMember: false,
   };
 
+  // Mimick the users table
+  const users = [
+    { id: 1, name: "Joe Smith" },
+    { id: 2, name: "Bob Clark" },
+    { id: 3, name: "Susan Young" },
+  ];
+
   // Render the club page with the necessary data
-  res.render("clubPage", { club, discussions, memberships, userRole });
+  res.render("clubPage", { club, users, discussions, memberships, userRole });
 });
 
 app.get("/bookListPage", (req, res) => {
