@@ -5,9 +5,13 @@
   <!-- Section to see the current book -->
   <section>
     <h3>Current Book</h3>
-    <p>Title: {{currentBook.title}}</p>
-    <p>Author: {{currentBook.author}}</p>
-    <p>Description: {{currentBook.description}}</p>
+   {{#each bookList}}
+        {{#if (eq id ../club.current_book_id)}}
+          <p>Title: {{name}}</p>
+          <p>Author: TODO</p>
+          <p>Description: {{description}}</p>  
+          {{/if}}
+      {{/each}}</p>
   </section>
 
   <!-- Section to see the discussion history -->
