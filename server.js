@@ -58,9 +58,29 @@ const clubs = [
   // ... other clubs
 ];
 
+const bookList = [
+  {
+    id: 1,
+    name: "Example Book",
+    description: "This is an example book.",
+  },
+  {
+    id: 2,
+    name: "Another Book",
+    description: "This is an another book.",
+  },
+];
+
 const users = [{}, {}, {}];
 app.get("/", (req, res) => {
   res.render("index", { club: clubs });
+});
+
+app.get("/bookPage/:id", async (req, res) => {
+  //TODO: ensure Id is within bounds of bpok list
+  const book = bookList[req.params.id - 1];
+
+  res.render("bookpage", { book });
 });
 
 app.get("/clubPage/:id", async (req, res) => {
@@ -104,20 +124,8 @@ app.get("/clubPage/:id", async (req, res) => {
 
 app.get("/bookListPage", (req, res) => {
   //TODO: replace by pulling book list from database
-  const BookList = [
-    {
-      id: 0,
-      name: "Example Book",
-      description: "This is an example book.",
-    },
-    {
-      id: 1,
-      name: "Another Book",
-      description: "This is an another book.",
-    },
-  ];
 
-  res.render("bookListPage", { book: BookList });
+  res.render("bookListPage", { book: bookList });
 });
 
 //app.use(routes);
