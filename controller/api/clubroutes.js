@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Clubs = require('../models/Clubs'); // Import the model (Clubs.js) to use its database functions.
+const Clubs = require('../../models/Clubs'); // Import the model (Clubs.js) to use its database functions.
 
 // create a new club
 routers.post('/clubs', async (req, res) => {
