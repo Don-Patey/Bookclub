@@ -26,7 +26,7 @@ const clubs = [
     name: "Fiction Club",
     description: "A cool club to discuss fiction books.",
     type: "Fiction",
-    club_admin: "Nicole Herritt", // to be changed to int
+    club_admin: 1,
     current_book_id: 1,
   },
   {
@@ -34,7 +34,7 @@ const clubs = [
     name: "Non-Fiction Club",
     description: "A cool club to discuss non-fiction books.",
     type: "Non-Fiction",
-    club_admin: "Jack Black", // to be changed to int
+    club_admin: 2,
     current_book_id: 2,
   },
   {
@@ -42,7 +42,7 @@ const clubs = [
     name: "History Club",
     description: "A cool club to discuss history books.",
     type: "Non-Fiction",
-    club_admin: "Robin Hood", // to be changed to int
+    club_admin: 3,
     current_book_id: 3,
   },
 
@@ -70,7 +70,55 @@ const bookList = [
   },
 ];
 
-const users = [{}, {}, {}];
+const discussions = [
+  {
+    id: 1,
+    text: "I loved the latest book!",
+    created_on: "Nov 2, 2023",
+    user_id: 1,
+    club_id: 1,
+    book_id: 1,
+  },
+  {
+    id: 2,
+    text: "It was ok - I liked some parts of it",
+    created_on: "Nov 2, 2023",
+    user_id: 2,
+    club_id: 1,
+    book_id: 1,
+  },
+  {
+    id: 3,
+    text: "Great book",
+    created_on: "Nov 1, 2023",
+    user_id: 3,
+    club_id: 2,
+    book_id: 2,
+  },
+];
+
+const memberships = [
+  {
+    id: 1,
+    user_id: 1,
+    club_id: 1,
+  },
+  {
+    id: 2,
+    user_id: 1,
+    club_id: 2,
+  },
+];
+
+const users = [
+  { id: 1, name: "Joe Smith" },
+  { id: 2, name: "Bob Clark" },
+  { id: 3, name: "Susan Young" },
+];
+
+// TODO: determien current user id via login
+const currentUserId = 1;
+
 app.get("/", (req, res) => {
   res.render("index", { club: clubs });
 });
@@ -90,55 +138,23 @@ app.get("/clubPage/:id", async (req, res) => {
   //TODO: ensure Id is within bounds of clubs
   const club = clubs[req.params.id - 1];
 
-  //mimick the discussion list retrieved by querying the database
-  const discussions = [
-    {
-      id: 1,
-      text: "I loved the latest book!",
-      created_on: "Nov 2, 2023",
-      user_id: 1,
-      club_id: 1,
-      book_id: 1,
-    },
-    {
-      id: 2,
-      text: "It was ok - I liked some parts of it",
-      created_on: "Nov 2, 2023",
-      user_id: 2,
-      club_id: 1,
-      book_id: 1,
-    },
-    {
-      id: 3,
-      text: "Great book",
-      created_on: "Nov 1, 2023",
-      user_id: 3,
-      club_id: 2,
-      book_id: 2,
-    },
-  ];
-  // Mimicking a membership object
-  const memberships = [
-    {
-      id: 1,
-      user_id: 1,
-      club_id: 1,
-    },
-  ];
+  //TODO: get the discussion list by querying the database
+  // discussions =
 
-  // Mimicking a userRole object
+  //TODO: get the memberships by querying the database
+  // memberships =
+
+  //TODO: get the users by querying the database
+
+  // Determine the user role
+
   const userRole = {
-    isAdmin: false,
-    isMember: false,
-    isNonMember: true,
+    isAdmin: club.club_admin == currentUserId,
+    isMember: isUserAMember(currentUserId, club.id),
   };
 
-  // Mimick the users table
-  const users = [
-    { id: 1, name: "Joe Smith" },
-    { id: 2, name: "Bob Clark" },
-    { id: 3, name: "Susan Young" },
-  ];
+  // TODO: query the database to get the user table
+  // users =
 
   // Render the club page with the necessary data
   res.render("clubPage", {
@@ -150,6 +166,21 @@ app.get("/clubPage/:id", async (req, res) => {
     userRole,
   });
 });
+
+function isUserAMember(userID, clubID) {
+  for (var i = 0; i < memberships.length; i++) {
+    var membershipUser = memberships[i].user_id;
+    var membershipClub = memberships[i].club_id;
+
+    if (membershipClub === clubID) {
+      if (membershipUser === userID) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
 
 app.get("/bookListPage", (req, res) => {
   //TODO: replace by pulling book list from database

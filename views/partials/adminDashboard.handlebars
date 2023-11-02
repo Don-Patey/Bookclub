@@ -20,8 +20,8 @@
   <form action="/update-club-type" method="POST">
     <label for="clubType">Club Type:</label>
     <select id="clubType" name="clubType" required>
-      <option value="fiction" {{#ifEquals clubType 'fiction'}}selected{{/ifEquals}}>Fiction</option>
-      <option value="non-fiction" {{#ifEquals clubType 'non-fiction'}}selected{{/ifEquals}}>Non-Fiction</option>
+      <option value="fiction" {{#if (eq clubType 'fiction')}} selected{{/if}}>Fiction</option>
+      <option value="non-fiction" {{#if (eq clubType 'non-fiction')}} selected{{/if}}>Non-Fiction</option>
       <!-- Add other club types as needed -->
     </select>
     <button type="submit">Update Club Type</button>
