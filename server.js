@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
+const Books = require("./models/Books");
 //const routes = require('./controllers');
 
 const sequelize = require("./config/connection");
@@ -99,6 +100,24 @@ app.get("/clubPage/:id", async (req, res) => {
 
   // Render the club page with the necessary data
   res.render("clubPage", { club, discussions, memberships, userRole });
+});
+
+app.get("/bookListPage", (req, res) => {
+  //TODO: replace by pulling book list from database
+  const BookList = [
+    {
+      id: 0,
+      name: "Example Book",
+      description: "This is an example book.",
+    },
+    {
+      id: 1,
+      name: "Another Book",
+      description: "This is an another book.",
+    },
+  ];
+
+  res.render("bookListPage", { book: BookList });
 });
 
 //app.use(routes);
