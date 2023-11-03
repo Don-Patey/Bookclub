@@ -1,5 +1,4 @@
 {{!-- Check if the user is not a member --}}
-{{^if isMember}}
   <div class="book-description">
     <h2>Current Book Description</h2>
     <p>{{club.description}}</p>
@@ -7,13 +6,9 @@
 
   <div class="current-book">
     <h2>Current Book</h2>
-       {{#each bookList}}
-        {{#if (eq id ../club.current_book_id)}}
-          <p>Title: {{name}}</p>
-          <p>Author: TODO</p>
-          <p>Description: {{description}}</p>  
-          {{/if}}
-      {{/each}}</p>
+      <p>Title: {{club.book.name}}</p>
+      <p>Author: TODO</p>
+      <p>Description: {{club.book.description}}</p>  
   </section>
   </div>
 
@@ -25,4 +20,3 @@
   <div class="join-request">
     <a href="/join">Request to Join</a>
   </div>
-{{/if}}
