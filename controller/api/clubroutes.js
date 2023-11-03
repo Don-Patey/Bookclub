@@ -3,7 +3,7 @@ const router = express.Router();
 const Clubs = require('../../models/Clubs'); // Import the model (Clubs.js) to use its database functions.
 
 // create a new club
-routers.post('/clubs', async (req, res) => {
+router.post('/clubs', async (req, res) => {
     try {
         const { name, description, type, club_admin_id, current_book_id} = req.body;
         const newClub = await Clubs.create({ name, description, type, club_admin_id, current_book_id});
@@ -13,33 +13,6 @@ routers.post('/clubs', async (req, res) => {
         res.status(500).json({ error: 'Failed to create new club' });
     }
     }); 
-
-// Get all clubs in a list
-router.get('/clubs', async (req, res) => {
-    try {
-        const allClubs = await Clubs.findAll();
-        res.json(allClubs);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).json({ error: 'Failed to retrieve clubs' });
-    }   
-});
-
-// Get club by ID   
-router.get('/clubs/:id', async (req, res) => {
-    const clubId = req.params.id;
-    try {
-        const club = await Clubs.findByPk(clubId);
-        if (!club) {
-            res.status(404).json({ message: 'Club not found' });
-        } else {
-            res.json(club);
-        }
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).json({ error: 'Failed to retrieve club' });
-    }
-});
 
 // Update club by ID
 router.put('/clubs/:id', async (req, res) => {

@@ -5,14 +5,14 @@
   <!-- Form to update club name -->
   <form action="/update-club-name" method="POST">
     <label for="clubName">Club Name:</label>
-    <input type="text" id="clubName" name="clubName" value="{{clubName}}" required />
+    <input type="text" id="clubName" name="clubName" value="{{club.name}}" required />
     <button type="submit">Update Club Name</button>
   </form>
 
   <!-- Form to update club description -->
   <form action="/update-club-description" method="POST">
     <label for="clubDescription">Club Description:</label>
-    <textarea id="clubDescription" name="clubDescription" required>{{clubDescription}}</textarea>
+    <textarea id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
     <button type="submit">Update Description</button>
   </form>
 
@@ -20,8 +20,9 @@
   <form action="/update-club-type" method="POST">
     <label for="clubType">Club Type:</label>
     <select id="clubType" name="clubType" required>
-      <option value="fiction" {{#if (eq clubType 'fiction')}} selected{{/if}}>Fiction</option>
-      <option value="non-fiction" {{#if (eq clubType 'non-fiction')}} selected{{/if}}>Non-Fiction</option>
+
+      <option value="fiction" {{#compare club.type '===''fiction'}}selected{{/compare}}>Fiction</option>
+      <option value="non-fiction" {{#compare club.type '===' 'non-fiction'}}selected{{/compare}}>Non-Fiction</option>
       <!-- Add other club types as needed -->
     </select>
     <button type="submit">Update Club Type</button>
@@ -30,7 +31,7 @@
   <!-- Section to show the current book -->
   <section>
     <h3>Current Book</h3>
-    <p>{{currentBook.title}} by {{currentBook.author}}</p>
+    <p>{{club.book.name}} by {{currentBook.author}}</p>
     <!-- Button to navigate to book list page -->
     <a href="/book-list" role="button">Select Current Book</a>
   </section>
