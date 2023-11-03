@@ -20,6 +20,7 @@
   <form action="/update-club-type" method="POST">
     <label for="clubType">Club Type:</label>
     <select id="clubType" name="clubType" required>
+
       <option value="fiction" {{#compare club.type '===''fiction'}}selected{{/compare}}>Fiction</option>
       <option value="non-fiction" {{#compare club.type '===' 'non-fiction'}}selected{{/compare}}>Non-Fiction</option>
       <!-- Add other club types as needed -->
