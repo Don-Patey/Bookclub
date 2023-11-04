@@ -3,21 +3,24 @@ const Books = require('./Books');
 const Clubs = require('./Clubs');
 const Memberships = require('./Memberships');
 const Discussions = require('./Discussions');
+const JoinRequests = require('./JoinRequests');
 
-Users.belongsToMany(Clubs, {
-    through: {
-        model: Memberships,
-        unique: false,
-    },
-    as: 'user_memberships'
+Users.hasMany(Memberships, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
 });
 
-Clubs.belongsToMany(Users, {
-    through: {
-        model: Memberships,
-        unique: false,
-    },
-    as: 'club_members'
+Memberships.belongsTo(Users, {
+    foreignKey: 'user_id'
+});
+
+Clubs.hasMany(Memberships, {
+    foreignKey: 'club_id',
+    onDelete: 'CASCADE',
+});
+
+Memberships.belongsTo(Clubs, {
+    foreignKey: 'club_id'
 });
 
 Users.hasMany(Discussions, {
@@ -64,4 +67,22 @@ Discussions.belongsTo(Books, {
     foreignKey: 'book_id'
 });
 
-module.exports = { Users, Memberships, Discussions, Clubs, Books };
+Users.hasMany(JoinRequests, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE',
+});
+
+JoinRequests.belongsTo(Users, {
+    foreignKey: 'user_id',
+});
+
+Clubs.hasMany(JoinRequests, {
+    foreignKey: 'club_id',
+    onDelete: 'CASCADE'
+});
+
+JoinRequests.belongsTo(Clubs, {
+    foreignKey: 'club_id'
+});
+
+module.exports = { Users, Memberships, Discussions, Clubs, Books, JoinRequests };

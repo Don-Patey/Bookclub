@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Clubs, Discussions, Books, Users, Memberships } = require('../models');
-
+const withAuth = require('../utils/auth');
 
 // Get all clubs in a list
 router.get('/', async (req, res) => {
@@ -42,10 +42,9 @@ router.get('/getClub/:id', async (req, res) => {
                     attributes: {exclude: ['password']},
                 },
                 {
-                    model: Users,
-                    through: Memberships, as: 'club_members'
-
-                },
+                    model: Memberships,
+                    attributes: {exclude: ['club_id']},
+                }
             ],
         });
         
@@ -56,13 +55,14 @@ router.get('/getClub/:id', async (req, res) => {
             res.status(404).json({ message: 'Club not found' });
         } else {
             const userRole = {
-            isAdmin: club.club_admin_id == '1',
-            isMember: isUserMember('1', club.club_members),
+            isAdmin: club.club_admin_id == req.session.user_id,
+            isMember: isUserMember(req.session.user_id, club.memberships),
             }
-            
+            console.log(userRole);
             res.render('clubPage', {
                club,
                userRole, 
+               loggedIn: req.session.loggedIn,
             });
         }
     } catch (err) {
@@ -71,7 +71,16 @@ router.get('/getClub/:id', async (req, res) => {
     }
 });
 
+router.get('/login', (req, res) => {
+    if(req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('login');
+});
+
 const isUserMember = (userId, membership) => {
+    
     for (var i = 0; i < membership.length; i++) {
         if (membership[i].id == userId) {
             return true;
