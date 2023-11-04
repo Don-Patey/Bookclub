@@ -5,7 +5,7 @@ const exphbs = require("express-handlebars");
 const helpers = require("handlebars-helpers")();
 const dateHelper = require("helper-date");
 const Books = require("./models/Books");
-const routes = require('./controller');
+const routes = require("./controller");
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -15,18 +15,18 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({});
 
 const sess = {
-  secret: 'Super secret secret',
-    cookie: {
-        maxAge: 500000,
-        httpOnly: true,
-        secure: false,
-        sameSite: 'strict',
-    },
-    resave: false, 
-    saveUninitialized: true,
-    store: new SequelizeStore({
-        db: sequelize
-    })
+  secret: "Super secret secret",
+  cookie: {
+    maxAge: 500000,
+    httpOnly: true,
+    secure: false,
+    sameSite: "strict",
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
@@ -37,7 +37,6 @@ app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
 
 // //example clubs - to be pull from database
 // const clubs = [
