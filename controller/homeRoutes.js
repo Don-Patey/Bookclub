@@ -42,7 +42,12 @@ router.get('/getClub/:id', async (req, res) => {
                     attributes: {exclude: ['password']},
                 },
                 {
+                    model: Discussions,
+                    include: [{model: Users, attributes: ['name'],}],
+                },
+                {
                     model: Memberships,
+                    include: [{model: Users, attributes: ['name']}],
                     attributes: {exclude: ['club_id']},
                 }
             ],
@@ -58,7 +63,7 @@ router.get('/getClub/:id', async (req, res) => {
             isAdmin: club.club_admin_id == req.session.user_id,
             isMember: isUserMember(req.session.user_id, club.memberships),
             }
-            console.log(userRole);
+        //    res.status(200).json(club);
             res.render('clubPage', {
                club,
                userRole, 

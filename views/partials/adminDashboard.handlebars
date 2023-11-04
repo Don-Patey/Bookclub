@@ -1,7 +1,7 @@
 <!-- adminDashboard.handlebars -->
 <div>
   <h2>Admin Dashboard</h2>
-
+  <p>{{loggedIn}}</p>
   <!-- Form to update club name -->
   <form action="/update-club-name" method="POST">
     <label for="clubName">Club Name:</label>
@@ -39,11 +39,11 @@
   <!-- Section for discussion history -->
   <section>
     <h3>Discussion History</h3>
-    <ul>
-      {{#each discussions as |discussion|}}
-        <li>{{discussion.message}} - {{discussion.user}}</li>
+      {{#each club.discussions as |discussion|}}
+        <p>{{discussion.text}} </p>
+        <p>  - {{discussion.user.name}} posted on {{date discussion.created_on "MM/DD/YYYY"}}</p>
       {{/each}}
-    </ul>
+    
   </section>
 
   <!-- Form to add a message to the discussion -->
@@ -78,8 +78,8 @@
   </section>
 </div>
 
-<!--
-<script src="/path/to/your/helpers.js"></script>
--->
+
+
+
 
 </div>

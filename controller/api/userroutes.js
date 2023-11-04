@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
 });
   
   // Update a user by ID
-  router.put('/users/:id', async (req, res) => {
+  router.put('/:id', async (req, res) => {
     try {
       const user = await Users.findByPk(req.params.id);
       if (!user) {
@@ -59,7 +59,7 @@ router.post('/login', async (req, res) => {
   });
   
   // Delete a user by ID
-  router.delete('/users/:id', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     try {
       const user = await Users.findByPk(req.params.id);
       if (!user) {
