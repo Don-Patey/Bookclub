@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Books = require("../../models/Books"); // Import the model (Books.js) to use its database functions.
+const Clubs = require("../../models/Clubs");
 
 // Create a new book
 router.post("/", async (req, res) => {
@@ -34,9 +35,21 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ message: "Book not found" });
     } else {
       const book = bookData.get({ plain: true });
+      let adminClubs = [];
+
+      if (req.session.user_id) {
+        const userId = req.session.user_id;
+        const clubData = await Clubs.findAll({
+          where: {
+            club_admin_id: userId,
+          },
+        });
+        adminClubs = clubData.map((club) => club.get({ plain: true }));
+      }
 
       res.render("bookPage", {
         book: book,
+        adminClubs: adminClubs,
       });
     }
   } catch (err) {
