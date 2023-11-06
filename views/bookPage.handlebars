@@ -22,3 +22,10 @@
   <p>You cannot assign this book to a club because you are not an admin of any clubs. Ensure you are logged in and have created a club.</p>
 {{/if}}
 
+<script>
+  window.onload = function() {
+    {{#if success}}
+      alert('Book successfully assigned to the club.');
+    {{/if}}
+  };
+</script>

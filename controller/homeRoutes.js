@@ -113,6 +113,45 @@ router.get("/bookListPage", async (req, res) => {
   }
 });
 
+// assign a book to a club
+router.post("/assign-book", async (req, res) => {
+  const { bookId, clubId } = req.body; // Extract the bookId and clubId from the POST request body
+  const userId = req.session.user_id;
+
+  if (!userId) {
+    // If the user is not logged in, redirect to the login page or send an error message
+    return res
+      .status(403)
+      .send("You must be logged in to perform this action.");
+  }
+
+  try {
+    // Find the club by ID where the logged-in user is the admin
+    const club = await Clubs.findOne({
+      where: {
+        id: clubId,
+        club_admin_id: userId, // Ensure that the logged-in user is the admin of the club
+      },
+    });
+
+    if (!club) {
+      // If the club is not found or the logged-in user is not the admin, send an error message
+      return res
+        .status(404)
+        .send("Club not found or you are not the admin of this club.");
+    }
+
+    // Update the club's current book ID with the new book ID
+    await club.update({ current_book_id: bookId });
+
+    // Redirect to a confirmation page, or render a success message
+    res.json({ message: "Book successfully assigned to the club." });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to assign book to club");
+  }
+});
+
 const isUserMember = (userId, membership) => {
   for (var i = 0; i < membership.length; i++) {
     if (membership[i].id == userId) {
