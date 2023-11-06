@@ -6,8 +6,8 @@ const Clubs = require("../../models/Clubs");
 // Create a new book
 router.post("/", async (req, res) => {
   try {
-    const { name, description } = req.body;
-    const newBook = await Books.create({ name, description });
+    const { name, description, author } = req.body;
+    const newBook = await Books.create({ name, description, author });
     res.json(newBook);
   } catch (err) {
     console.error(err.message);
