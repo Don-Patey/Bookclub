@@ -24,18 +24,17 @@ router.post("/", async (req, res) => {
 // Update club by ID
 router.put("/:id", async (req, res) => {
   const clubId = req.params.id;
-  const { name, description, type, club_admin_id, current_book_id } = req.body;
+  const updateData = req.body;
+
   try {
-    const updateClub = await Clubs.update(
-      { name, description, type, club_admin_id, current_book_id },
-      {
-        where: { id: clubId },
-      }
-    );
+    const updateClub = await Clubs.update(updateData, {
+      where: { id: clubId },
+    });
+
     if (updateClub[0] === 0) {
       res.status(404).json({ message: "Club not found" });
     } else {
-      res.json({ message: "Club updated" });
+      res.json({ message: "Club updated", updateData });
     }
   } catch (err) {
     console.error(err.message);

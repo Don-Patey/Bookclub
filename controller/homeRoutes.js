@@ -113,6 +113,36 @@ router.get("/bookListPage", async (req, res) => {
   }
 });
 
+// update club
+router.post("/update-club", async (req, res) => {
+  const clubId = req.body.clubId; // You need to send this from the client
+  const { clubName, clubDescription, clubType } = req.body;
+
+  // Validate and sanitize the input data here
+
+  try {
+    const result = await Clubs.update(
+      {
+        name: clubName,
+        description: clubDescription,
+        type: clubType,
+      },
+      {
+        where: { id: clubId },
+      }
+    );
+
+    if (result[0] > 0) {
+      res.json({ message: "Club updated successfully." });
+    } else {
+      res.status(404).json({ message: "Club not found or no changes made." });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to update club." });
+  }
+});
+
 // assign a book to a club
 router.post("/assign-book", async (req, res) => {
   const { bookId, clubId } = req.body; // Extract the bookId and clubId from the POST request body

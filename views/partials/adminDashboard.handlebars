@@ -4,6 +4,7 @@
   <p>{{loggedIn}}</p>
   <!-- Form to update club name -->
   <form action="/update-club" method="POST">
+  
     <label for="clubName">Club Name:</label>
     <input type="text" id="clubName" name="clubName" value="{{club.name}}" required />
 
@@ -17,6 +18,7 @@
       <option value="non-fiction" {{#compare club.type '===' 'non-fiction'}}selected{{/compare}}>Non-Fiction</option>
       <!-- Add other club types as needed -->
     </select>
+    <input type="hidden" name="clubId" value="{{club.id}}" />
     <button type="submit">Update Club</button>
   </form>
 
