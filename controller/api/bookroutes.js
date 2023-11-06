@@ -29,11 +29,15 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const bookId = req.params.id;
   try {
-    const book = await Books.findByPk(bookId);
-    if (!book) {
+    const bookData = await Books.findByPk(bookId);
+    if (!bookData) {
       res.status(404).json({ message: "Book not found" });
     } else {
-      res.json(book);
+      const book = bookData.get({ plain: true });
+
+      res.render("bookPage", {
+        book: book,
+      });
     }
   } catch (err) {
     console.error(err.message);
