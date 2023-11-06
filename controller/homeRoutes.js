@@ -113,6 +113,16 @@ router.get("/bookListPage", async (req, res) => {
   }
 });
 
+//go to create book page
+router.get("/createBook", (req, res) => {
+  if (!req.session.loggedIn) {
+    res.render("login");
+    return;
+  }
+
+  res.render("createBook", {});
+});
+
 // update club
 router.post("/update-club", async (req, res) => {
   const clubId = req.body.clubId; // You need to send this from the client

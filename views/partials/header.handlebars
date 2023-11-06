@@ -6,6 +6,7 @@
     <li><a href="/bookListPage/">Books</a></li>
     {{#if loggedIn}}
       <li><a href="" id="createClub">Create Club</a></li>
+      <li><a href="/createBook">Create Book</a></li>
       <li><a href="/logout" id="logout">Logout</a></li>
     {{else}}
       <li><a href="/login">Login</a></li>
@@ -16,5 +17,5 @@
 <hr />
 {{#if loggedIn}}
   <script src="/js/logout.js"></script>
-  <script src="/js/createClub.js"></script>
+  <script src="/js/createHandlers.js"></script>
 {{/if}}
