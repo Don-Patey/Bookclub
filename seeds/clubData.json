@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Fiction Club",
+    "description": "A cool club to discuss fiction books.",
+    "type": "Fiction",
+    "club_admin_id": 1,
+    "current_book_id": 1
+  },
+  {
+    "name": "Non Fiction Club",
+    "description": "A cool club to discuss non-fiction books.",
+    "type": "Non-Fiction",
+    "club_admin_id": 2,
+    "current_book_id": 3
+  },
+  {
+    "name": "History Club",
+    "description": "A cool club to discuss history books.",
+    "type": "Non-Fiction",
+    "club_admin_id": 3,
+    "current_book_id": 2
+  }
+]

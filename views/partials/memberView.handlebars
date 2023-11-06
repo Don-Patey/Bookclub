@@ -1,38 +1,22 @@
 <!-- memberView.handlebars -->
 <div>
   <h2>Member Dashboard</h2>
-
+  <p>{{loggedIn}}</p>
   <!-- Section to see the current book -->
   <section>
     <h3>Current Book</h3>
-   {{#each bookList}}
-        {{#if (eq id ../club.current_book_id)}}
-          <p>Title: {{name}}</p>
-          <p>Author: TODO</p>
-          <p>Description: {{description}}</p>  
-          {{/if}}
-      {{/each}}</p>
+      <p>Title: {{club.book.name}}</p>
+      <p>Author: {{club.author}}</p>
+      <p>Description: {{club.book.description}}</p>  
   </section>
 
   <!-- Section to see the discussion history -->
   <section>
     <h3>Discussion History</h3>
-    
-    <ul>
-      {{#each discussions as |discussion|}}
-        
-          {{#if (eq ../club.id discussion.club_id)}}
-            {{#each ../users}}
-              {{#if (eq id discussion.user_id)}}
-              <li>
-              <strong>{{name}}</strong> ({{discussion.created_on}}) {{discussion.text}}
-              </li>
-              {{/if}}
-            {{/each}}
-        {{/if}}
- 
+      {{#each club.discussions as |discussion|}}
+        <p>{{discussion.text}} </p>
+        <p>  - {{discussion.user.name}} posted on {{date discussion.created_on "MM/DD/YYYY"}}</p>
       {{/each}}
-    </ul>
   </section>
 
   <!-- Form to add a message to the discussion -->

@@ -1,0 +1,164 @@
+const router = require("express").Router();
+const { Clubs, Discussions, Books, Users, Memberships } = require("../models");
+const withAuth = require("../utils/auth");
+
+// Get all clubs in a list
+router.get("/", async (req, res) => {
+  try {
+    const allClubs = await Clubs.findAll({
+      include: [
+        {
+          model: Books,
+        },
+        {
+          model: Users,
+          attributes: { exclude: ["password"] },
+        },
+      ],
+    });
+
+    const clubs = allClubs.map((club) => club.get({ plain: true }));
+
+    res.render("index", {
+      clubs,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Get club by ID
+router.get("/getClub/:id", async (req, res) => {
+  const clubId = req.params.id;
+
+  try {
+    const selectedClub = await Clubs.findByPk(clubId, {
+      include: [
+        {
+          model: Books,
+        },
+        {
+          model: Users,
+          attributes: { exclude: ["password"] },
+        },
+        {
+          model: Discussions,
+          include: [{ model: Users, attributes: ["name"] }],
+        },
+        {
+          model: Memberships,
+          include: [{ model: Users, attributes: ["name"] }],
+          attributes: { exclude: ["club_id"] },
+        },
+      ],
+    });
+
+    const club = selectedClub.get({ plain: true });
+
+    if (!club) {
+      res.status(404).json({ message: "Club not found" });
+    } else {
+      const userRole = {
+        isAdmin: club.club_admin_id == req.session.user_id,
+        isMember: isUserMember(req.session.user_id, club.memberships),
+      };
+      //    res.status(200).json(club);
+      res.render("clubPage", {
+        club,
+        userRole,
+        loggedIn: req.session.loggedIn,
+      });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: "Failed to retrieve club" });
+  }
+});
+
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("login");
+});
+
+//get a user's id
+router.get("/getUserId", (req, res) => {
+  if (req.session && req.session.user_id) {
+    res.json({ user_id: req.session.user_id });
+  } else {
+    res.status(401).json({ message: "Not logged in" });
+  }
+});
+
+//get book list
+router.get("/bookListPage", async (req, res) => {
+  try {
+    console.log("Finding books...");
+
+    const allBooks = await Books.findAll({});
+
+    const books = allBooks.map((book) => book.get({ plain: true }));
+
+    console.log("books: ", books);
+
+    res.render("bookListPage", {
+      books,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// assign a book to a club
+router.post("/assign-book", async (req, res) => {
+  const { bookId, clubId } = req.body; // Extract the bookId and clubId from the POST request body
+  const userId = req.session.user_id;
+
+  if (!userId) {
+    // If the user is not logged in, redirect to the login page or send an error message
+    return res
+      .status(403)
+      .send("You must be logged in to perform this action.");
+  }
+
+  try {
+    // Find the club by ID where the logged-in user is the admin
+    const club = await Clubs.findOne({
+      where: {
+        id: clubId,
+        club_admin_id: userId, // Ensure that the logged-in user is the admin of the club
+      },
+    });
+
+    if (!club) {
+      // If the club is not found or the logged-in user is not the admin, send an error message
+      return res
+        .status(404)
+        .send("Club not found or you are not the admin of this club.");
+    }
+
+    // Update the club's current book ID with the new book ID
+    await club.update({ current_book_id: bookId });
+
+    // Redirect to a confirmation page, or render a success message
+    res.json({ message: "Book successfully assigned to the club." });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to assign book to club");
+  }
+});
+
+const isUserMember = (userId, membership) => {
+  for (var i = 0; i < membership.length; i++) {
+    if (membership[i].id == userId) {
+      return true;
+    }
+  }
+  return false;
+};
+
+module.exports = router;

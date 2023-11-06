@@ -20,6 +20,10 @@ Books.init(
             type: DataTypes.TEXT,
             allowNull: true,
         },
+        author: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }
     },
     {
         sequelize,

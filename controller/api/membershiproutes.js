@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();   
-const { Memberships } = require('../../models/Memberships');
+const { Memberships } = require('../../models');
 
 // Create a new membership
 router.post('/', async (req, res) => {

@@ -1,0 +1,23 @@
+[
+    {
+              "text": "I loved the latest book!",
+              "created_on": "Nov 2, 2023",
+              "user_id": 1,
+              "club_id": 1,
+              "book_id": 1
+            },
+            {
+              "text": "It was ok - I liked some parts of it",
+              "created_on": "Nov 2, 2023",
+              "user_id": 2,
+              "club_id": 1,
+              "book_id": 1
+            },
+            {
+              "text": "Great book",
+              "created_on": "Nov 1, 2023",
+              "user_id": 3,
+              "club_id": 1,
+              "book_id": 1
+            }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Perfume",
+    "description": "A 1985 literary historical fantasy novel by German writer Patrick Süskind. The novel explores the sense of smell and its relationship with the emotional meanings that scents may have.",
+    "author": "Patrick Suskind"
+  },
+  {
+    "name": "World War II: A New History",
+    "description": "This book is a magisterial global history of World War II. Beginning in 1937 with the outbreak of the Sino-Japanese War, Evan Mawdsley shows how the origins of World War II lay in a conflict between the old international order and the new and then traces the globalisation of the conflict as it swept through Asia, Europe, and the Middle East.",
+    "author": "Evan Mawdsley"
+  },
+  {
+    "name": "Behind the Beautiful Forevers: Life, Death, and Hope in a Mumbai Undercity",
+    "description": "In this breathtaking book by Pulitzer Prize winner Katherine Boo, a bewildering age of global change and inequality is made human through the dramatic story of families striving toward a better life in Annawadi, a makeshift settlement in the shadow of luxury hotels near the Mumbai airport.",
+    "author": "Katherine Boo"
+  }
+]
