@@ -102,10 +102,9 @@ router.get("/bookListPage", async (req, res) => {
 
     const books = allBooks.map((book) => book.get({ plain: true }));
 
-    console.log("books: ", books);
-
-    res.render("bookListPage", {
+   res.render("bookListPage", {
       books,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     console.log(err);
