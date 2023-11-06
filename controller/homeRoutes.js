@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { Clubs, Discussions, Books, Users, Memberships } = require("../models");
 const withAuth = require("../utils/auth");
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 // Get all clubs in a list
 router.get("/", async (req, res) => {
@@ -191,6 +193,35 @@ router.post("/assign-book", async (req, res) => {
   }
 });
 
+// Setup Nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.SERVER_EMAIL,
+    pass: process.env.SERVER_EMAIL_PASSWORD,
+  },
+});
+
+//send invite email
+router.post("/send-invites", (req, res) => {
+  const { friendEmail } = req.body;
+  const mailOptions = {
+    from: process.env.SERVER_EMAIL,
+    to: friendEmail,
+    subject: "You are invited!",
+    text: "You have been invited to join our book club!",
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send("Error sending invite.");
+    } else {
+      console.log("Email sent: " + info.response);
+      res.status(200).send("Invite sent successfully!");
+    }
+  });
+});
 const isUserMember = (userId, membership) => {
   for (var i = 0; i < membership.length; i++) {
     if (membership[i].id == userId) {
