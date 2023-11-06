@@ -5,15 +5,27 @@
 <h2>Title: {{book.name}}</h2>
 <p>{{book.description}}</p>
 
-{{#if userRole.isAdmin}}
+{{#if adminClubs}}
+  <!-- Code to display when the adminClubs array is not empty -->
   <form action="/assign-book" method="POST">
     <input type="hidden" name="bookId" value="{{book.id}}" />
     <label for="club">Assign to Club:</label>
     <select name="clubId">
-      {{#each clubs}}
+      {{#each adminClubs}}
         <option value="{{this.id}}">{{this.name}}</option>
       {{/each}}
     </select>
     <button type="submit">Assign Book</button>
   </form>
+{{else}}
+  <!-- Code to display when the adminClubs array is empty -->
+  <p>You cannot assign this book to a club because you are not an admin of any clubs. Ensure you are logged in and have created a club.</p>
 {{/if}}
+
+<script>
+  window.onload = function() {
+    {{#if success}}
+      alert('Book successfully assigned to the club.');
+    {{/if}}
+  };
+</script>

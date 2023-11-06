@@ -1,26 +1,26 @@
 <!-- adminDashboard.handlebars -->
 <section>
   <h2>Admin Dashboard</h2>
-  <p>{{loggedIN}}</p>
-<!-- Form updated to one button for all club information and updates -->
-<form action="/update-club" method="POST">
-<!--update club name -->
-<label for="clubname">Club Name:</label>
-<input type="text" name="clubName" id="clubName" value="{{club.name}}" required />
+  <p>{{loggedIn}}</p>
+  <!-- Form to update club name -->
+  <form action="/update-club" method="POST">
+  
+    <label for="clubName">Club Name:</label>
+    <input type="text" id="clubName" name="clubName" value="{{club.name}}" required />
 
-<!--update club description -->
-<label for="clubDescription">Club Description</label>
-<textarea name="clubDescription" id="clubDescriptiom" required>{{club.description}}</textarea>
+    <label for="clubDescription">Club Description:</label>
+    <textarea id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
 
-<!--update club type -->
-<label for="clubType">Club Type</label>
-<select id="clubType" name="clubType" required>
-  <option value="fiction" {{#compare club.type "fiction"}}selected{{/compare}}>Fiction</option>
-  <option value="non-fiction" {{#compare club.type "non-fiction"}}selected{{/compare}}>Non-Fiction</option>
-</select>
-<button type="submit">Update Club</button>
-</form>
-</section>
+    <label for="clubType">Club Type:</label>
+    <select id="clubType" name="clubType" required>
+
+      <option value="fiction" {{#compare club.type '===''fiction'}}selected{{/compare}}>Fiction</option>
+      <option value="non-fiction" {{#compare club.type '===' 'non-fiction'}}selected{{/compare}}>Non-Fiction</option>
+      <!-- Add other club types as needed -->
+    </select>
+    <input type="hidden" name="clubId" value="{{club.id}}" />
+    <button type="submit">Update Club</button>
+  </form>
 
   <!-- Section to show the current book -->
   <section>
