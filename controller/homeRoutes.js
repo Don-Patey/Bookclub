@@ -93,6 +93,26 @@ router.get("/getUserId", (req, res) => {
   }
 });
 
+//get book list
+router.get("/bookListPage", async (req, res) => {
+  try {
+    console.log("Finding books...");
+
+    const allBooks = await Books.findAll({});
+
+    const books = allBooks.map((book) => book.get({ plain: true }));
+
+    console.log("books: ", books);
+
+    res.render("bookListPage", {
+      books,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 const isUserMember = (userId, membership) => {
   for (var i = 0; i < membership.length; i++) {
     if (membership[i].id == userId) {
