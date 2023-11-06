@@ -144,6 +144,7 @@ router.post("/assign-book", async (req, res) => {
     // Update the club's current book ID with the new book ID
     await club.update({ current_book_id: bookId });
 
+    // Redirect to a confirmation page, or render a success message
     res.json({ message: "Book successfully assigned to the club." });
   } catch (err) {
     console.error(err);
