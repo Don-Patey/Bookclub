@@ -50,6 +50,7 @@ router.get("/:id", async (req, res) => {
       res.render("bookPage", {
         book: book,
         adminClubs: adminClubs,
+        loggedIn: req.session.loggedIn,
       });
     }
   } catch (err) {
