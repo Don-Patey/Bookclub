@@ -1,15 +1,16 @@
-<h1>Book Club</h1>
+<h1 class="bg-[#c3b299] mt-6 p-8 font-serif tracking-widest text-center">Welcome to BookMark</h1>
+<h2 class="bg-[#c3b299] tracking-widest text-center font-serif">Your Online Book Club<br><br><span class="italic">Read - Discuss - Grow</span> </h2>
 
 <nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/bookListPage/">Books</a></li>
+  <ul class="flex flex-row gap-8 justify-center list-none">
+    <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-bounce"><a href="/">Home</a></li>
+    <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-bounce"><a href="/bookListPage/">Books</a></li>
     {{#if loggedIn}}
-      <li><a href="" id="createClub">Create Club</a></li>
-      <li><a href="/createBook">Create Book</a></li>
-      <li><a href="" id="logout">Logout</a></li>
+      <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-bounce"><a href="" id="createClub">Create Club</a></li>
+      <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-bounce"><a href="/createBook">Create Book</a></li>
+      <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-bounce"><a href="" id="logout">Logout</a></li>
     {{else}}
-      <li><a href="/login">Login</a></li>
+      <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-bounce"><a href="/login">Login</a></li>
     {{/if}}
   </ul>
 </nav>
