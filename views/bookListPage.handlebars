@@ -1,14 +1,12 @@
 {{> header}}
 
 <ul class="book-list">
-
     <h2>Books</h2>
     <ul>
       {{#each books}}
       <li>
-        {{> book }}
+        {{this.name}} (ID: {{this.id}})
       </li>
       {{/each}}
     </ul>
-
 </ul>

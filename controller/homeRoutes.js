@@ -100,7 +100,9 @@ router.get("/bookListPage", async (req, res) => {
   try {
     console.log("Finding books...");
 
-    const allBooks = await Books.findAll({});
+    const allBooks = await Books.findAll({
+      attributes: ["id", "title",],
+    });
 
     const books = allBooks.map((book) => book.get({ plain: true }));
 
