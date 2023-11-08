@@ -65,12 +65,12 @@ router.get("/getClub/:id", async (req, res) => {
         isAdmin: club.club_admin_id == req.session.user_id,
         isMember: isUserMember(req.session.user_id, club.memberships),
       };
-         res.status(200).json(club);
-      // res.render("clubPage", {
-      //   club,
-      //   userRole,
-      //   loggedIn: req.session.loggedIn,
-      // });
+        //  res.status(200).json(club);
+      res.render("clubPage", {
+        club,
+        userRole,
+        loggedIn: req.session.loggedIn,
+      });
     }
   } catch (err) {
     console.error(err.message);
