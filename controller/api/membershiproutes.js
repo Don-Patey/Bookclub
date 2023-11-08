@@ -5,7 +5,10 @@ const { Memberships } = require('../../models');
 // Create a new membership
 router.post('/', async (req, res) => {
     try {
-        const membershipData = await Memberships.create(req.body);
+        const membershipData = await Memberships.create({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
         res.status(200).json(membershipData);
     } catch (err) {
         res.status(400).json(err);
