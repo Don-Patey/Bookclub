@@ -3,19 +3,22 @@
 <h1 class="bg-gradient-to-r from-[#c3b299] to-[#523249] underline decoration-[#815355] px-8" >Create a New Book</h1>
 <form id="bookForm">
   <label for="name" class="text-black mx-8">Name:</label>
-  <input type="text" id="name" name="name" required /><br />
+  <br>
+  <input class="ml-6 border-solid border-4 border-[#c3b299]" type="text" id="name" name="name" required /><br />
   <br>
 
   <label for="description" class="text-black mx-8">Description:</label>
-  <textarea class="col-20" id="description" name="description" required></textarea><br />
+  <br>
+  <textarea rows="4" cols="65" class="ml-6 border-solid border-4 border-[#c3b299]" id="description" name="description" required></textarea><br />
   <br>
 
   <label for="author" class="text-black mx-8">Author:</label>
-  <input type="text" id="author" name="author" required /><br />
+  <br>
+  <input class="ml-6 border-solid border-4 border-[#c3b299]" type="text" id="author" name="author" required /><br />
   <br>
 
 
-  <input type="submit" value="Add Book" class="text-black bg-[#cbd4c2] mx-8 px-6 cursor-pointer" />
+  <input type="submit" value="Add it to the BookMark Library!" class="text-black bg-[#cbd4c2] mx-8 px-6 cursor-pointer hover:animate-pulse" />
 </form>
 
 <div id="responseMessage"></div>
