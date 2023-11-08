@@ -27,6 +27,13 @@
  
 
   <div class="join-request">
-    <a href="/join" class="bg-green-500 px-8 rounded-md hover:animate-pulse">Request to Join the Discussion!</a>
+    {{#if loggedIn}}
+    <a href="" class="bg-green-500 px-8 rounded-md hover:animate-pulse" id="join" data-club-id="{{club.id}}">Request to Join the Discussion!</a>
+    {{else}}
+    <p>You must be logged in to join</p><a href="/login" class="bg-green-500 px-8 rounded-md hover:animate-pulse">Login</a>
+    {{/if}}
   </div>
 </div>
+
+
+<script src="/js/join.js"></script>

@@ -21,11 +21,12 @@
   <!-- Form to add a message to the discussion -->
   <section>
     <h3 class="text-black">Add to Discussion</h3>
-    <form action="/add-message" method="POST">
-      <input type="hidden" name="bookId" value="{{currentBook.id}}" />
-      <textarea class="border-solid border-4 border-[#c3b299]" cols="70" rows="8" name="message" required placeholder="Your message"></textarea>
-      <button type="submit" class="animate-pulse bg-blue-500 mx-8 px-6 text-white">Post Message</button>
-    </form>
+    
+      <input type="hidden" name="clubId" value="{{club.id}}" id="clubId" />
+      <input type="hidden" name="bookId" value="{{club.current_book_id}}" id="book_id" />
+      <textarea class="border-solid border-4 border-[#c3b299]" cols="70" rows="8" name="message" id="message" required placeholder="Your message"></textarea>
+      <button type="submit" id="addMessage" class="animate-pulse bg-blue-500 mx-8 px-6 text-white">Post Message</button>
+    
   </section>
 
   <!-- Option to leave the club -->
@@ -36,3 +37,5 @@
     </form>
   </section>
 </div>
+
+<script src="/js/memberView.js"></script>
