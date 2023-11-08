@@ -1,22 +1,32 @@
 {{!-- Check if the user is not a member --}}
+<div class="text-black">
   <div class="book-description">
-    <h2>Current Book Description</h2>
+    <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Club Description</h2>
     <p>{{club.description}}</p>
   </div>
 
+ <div class="club-type">
+    <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Club Type</h2>
+    <p class="text-xl font-bold">{{club.type}}</p>
+  </div>
+
   <div class="current-book">
-    <h2>Current Book</h2>
-      <p>Title: {{club.book.name}}</p>
-      <p>Author: {{club.author}}</p>
-      <p>Description: {{club.book.description}}</p>  
+    <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Current Book</h2>
+      <p><span class="font-bold underline">Title:</span><br> 
+        {{club.book.name}}
+      </p>
+      <p><span class="font-bold underline">Author:</span><br> 
+        {{club.author}}
+      </p>
+      <p><span class="font-bold underline">Description:</span><br> 
+        {{club.book.description}}
+      </p>  
   </section>
   </div>
 
-  <div class="club-type">
-    <h2>Club Type</h2>
-    <p>{{club.type}}</p>
-  </div>
+ 
 
   <div class="join-request">
-    <a href="/join">Request to Join</a>
+    <a href="/join" class="bg-green-500 px-8 rounded-md hover:animate-pulse">Request to Join the Discussion!</a>
   </div>
+</div>
