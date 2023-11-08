@@ -1124,6 +1124,10 @@ video {
   margin-bottom: 3rem;
 }
 
+.mb-0 {
+  margin-bottom: 0px;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -1138,6 +1142,42 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mt-0 {
+  margin-top: 0px;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.-mt-2 {
+  margin-top: -0.5rem;
+}
+
+.-mt-5 {
+  margin-top: -1.25rem;
+}
+
+.-mt-20 {
+  margin-top: -5rem;
+}
+
+.-mb-0 {
+  margin-bottom: -0px;
+}
+
+.-mb-5 {
+  margin-bottom: -1.25rem;
+}
+
+.-mb-10 {
+  margin-bottom: -2.5rem;
+}
+
+.-mb-12 {
+  margin-bottom: -3rem;
 }
 
 .block {
@@ -1400,26 +1440,6 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.hover\:flex-none:hover {
-  flex: none;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8,0,1,1);
-  }
-
-  50% {
-    transform: none;
-    animation-timing-function: cubic-bezier(0,0,0.2,1);
-  }
-}
-
-.hover\:animate-bounce:hover {
-  animation: bounce 1s infinite;
-}
-
 @keyframes pulse {
   50% {
     opacity: .5;
@@ -1430,24 +1450,9 @@ video {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.hover\:animate-spin:hover {
-  animation: spin 1s linear infinite;
-}
-
 .hover\:bg-\[\#dbebc0\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 235 192 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-green-500:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
 }
 
 @media (prefers-color-scheme: dark) {
