@@ -1,25 +1,28 @@
 {{> header}}
 
-<h1>Book Page</h1>
+<h1 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Book Page</h1>
 
 <h2>Title: {{book.name}}</h2>
-<p>{{book.description}}</p>
+<p class="text-black">{{book.description}}</p>
 
 {{#if adminClubs}}
   <!-- Code to display when the adminClubs array is not empty -->
   <form action="/assign-book" method="POST">
     <input type="hidden" name="bookId" value="{{book.id}}" />
-    <label for="club">Assign to Club:</label>
+    <label class="text-black font-bold underline" for="club">Assign to Club:</label>
+    <br>
     <select name="clubId">
       {{#each adminClubs}}
         <option value="{{this.id}}">{{this.name}}</option>
       {{/each}}
     </select>
-    <button type="submit">Assign Book</button>
+    <br>
+    <br>
+    <button class="bg-green-500 rounded-md hover:animate-pulse px-8" type="submit">Assign Book</button>
   </form>
 {{else}}
   <!-- Code to display when the adminClubs array is empty -->
-  <p>You cannot assign this book to a club because you are not an admin of any clubs. Ensure you are logged in and have created a club.</p>
+  <p class="bg-red-500 text-center rounded-md animate-pulse text-white">You cannot assign this book to a club because you are not an admin of any clubs. Ensure you are logged in and have created a club.</p>
 {{/if}}
 
 <script>
