@@ -1,18 +1,18 @@
 <!-- memberView.handlebars -->
 <div>
-  <h2>Member Dashboard</h2>
+  <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249] underline">Member Dashboard -- <span class="italic text-s"> Welcome Back!</span></h2>
   <p>{{loggedIn}}</p>
   <!-- Section to see the current book -->
-  <section>
-    <h3>Current Book</h3>
-      <p>Title: {{club.book.name}}</p>
-      <p>Author: {{club.author}}</p>
-      <p>Description: {{club.book.description}}</p>  
+  <section class="text-black">
+    <h3 class="bold underline">Current Book&#128214</h3>
+      <p><span class="underline font-bold">Title:</span><br> {{club.book.name}}</p>
+      <p><span class="underline font-bold">Author:</span><br> {{club.author}}</p>
+      <p><span class="underline font-bold">Description:</span><br> {{club.book.description}}</p>  
   </section>
 
   <!-- Section to see the discussion history -->
   <section>
-    <h3>Discussion History</h3>
+    <h3 class="text-black text-center  pb-8">&#128204 Discussion History &#128204 </h3>
       {{#each club.discussions as |discussion|}}
         <p>{{discussion.text}} </p>
         <p>  - {{discussion.user.name}} posted on {{date discussion.created_on "MM/DD/YYYY"}}</p>
@@ -21,20 +21,19 @@
 
   <!-- Form to add a message to the discussion -->
   <section>
-    <h3>Add to Discussion</h3>
+    <h3 class="text-black">Add to Discussion</h3>
     <form action="/add-message" method="POST">
       <input type="hidden" name="bookId" value="{{currentBook.id}}" />
-      <textarea name="message" required placeholder="Your message"></textarea>
-      <button type="submit">Post Message</button>
+      <textarea class="border-solid border-4 border-[#c3b299]" cols="70" rows="8" name="message" required placeholder="Your message"></textarea>
+      <button type="submit" class="animate-pulse bg-blue-500 mx-8 px-6 text-white">Post Message</button>
     </form>
   </section>
 
   <!-- Option to leave the club -->
   <section>
-    <h3>Leave Club</h3>
     <form action="/leave-club" method="POST">
       <input type="hidden" name="clubId" value="{{clubId}}" />
-      <button type="submit">Leave Club</button>
+      <button type="submit" class="bg-red-500 text-white my-12 px-8">Leave Club</button>
     </form>
   </section>
 </div>
