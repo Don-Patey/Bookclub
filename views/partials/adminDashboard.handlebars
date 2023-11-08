@@ -1,38 +1,47 @@
 <!-- adminDashboard.handlebars -->
-<section>
-  <h2>Admin Dashboard</h2>
+<section class="text-black">
+  <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Admin Dashboard</h2>
   <p>{{loggedIn}}</p>
   <!-- Form to update club name -->
   <form action="/update-club" method="POST">
   
-    <label for="clubName">Club Name:</label>
-    <input type="text" id="clubName" name="clubName" value="{{club.name}}" required />
+    <label for="clubName" class="underline font-bold">Club Name:<br></label>
+    <input class="border-solid border-4 border-[#c3b299]" type="text" id="clubName" name="clubName" value="{{club.name}}" required />
+    <br>
+    <br>
 
-    <label for="clubDescription">Club Description:</label>
-    <textarea id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
+    <label for="clubDescription" class="underline font-bold">Club Description:</label>
+    <br>
+    <textarea cols="65" rows="5" class="border-solid border-4 border-[#c3b299]" id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
+    <br>
+    <br>
 
-    <label for="clubType">Club Type:</label>
+    <label for="clubType" class="underline font-bold">Club Type:</label>
+    <br>
+    <br>
     <select id="clubType" name="clubType" required>
 
       <option value="fiction" {{#compare club.type '===''fiction'}}selected{{/compare}}>Fiction</option>
       <option value="non-fiction" {{#compare club.type '===' 'non-fiction'}}selected{{/compare}}>Non-Fiction</option>
       <!-- Add other club types as needed -->
     </select>
+    <br>
+    <br>
     <input type="hidden" name="clubId" value="{{club.id}}" />
-    <button type="submit">Update Club</button>
+    <button class="bg-green-500 px-8 hover:animate-pulse rounded-md" type="submit">Update Club</button>
   </form>
 
   <!-- Section to show the current book -->
   <section>
-    <h3>Current Book</h3>
-    <p>{{club.book.name}} by {{club.book.author}}</p>
+    <h3 class="bg-gradient-to-r from-[#dbebc0] to-[#523249]">Current Book</h3>
+    <p class="text-lg italic font-bold">{{club.book.name}} by {{club.book.author}}</p>
     <!-- Button to navigate to book list page -->
-    <a href="/bookListPage" role="button">Select Current Book</a>
+    <a href="/bookListPage" role="button" class="bg-green-500 rounded-md px-8 hover:animate-pulse">Select Current Book</a>
   </section>
 
   <!-- Section for discussion history -->
   <section>
-    <h3>Discussion History</h3>
+    <h3 class="bg-gradient-to-r from-[#dbebc0] to-[#523249]">Discussion History</h3>
       {{#each club.discussions as |discussion|}}
         <p>{{discussion.text}} </p>
         <p>  - {{discussion.user.name}} posted on {{date discussion.created_on "MM/DD/YYYY"}}</p>
@@ -43,29 +52,33 @@
   <!-- Form to add a message to the discussion -->
   <form action="/add-message" method="POST">
     <label for="message">Your Message:</label>
-    <textarea id="message" name="message" required></textarea>
-    <button type="submit">Post Message</button>
+    <br>
+    <textarea rows="6" cols="65" class="border-solid border-4 border-[#c3b299]" id="message" name="message" required></textarea>
+    <button type="submit" class="bg-sky-500 ml-4 px-8 hover:animate-pulse rounded-md">Post Message</button>
   </form>
 
   <!-- Section to send invites to friends -->
   <section>
-    <h3>Invite Friends</h3>
+    <h3 class="bg-gradient-to-r from-[#dbebc0] to-[#523249]">Invite Friends</h3>
+    <br>
     <form action="/send-invites" method="POST">
       <label for="friendEmail">Friend's Email:</label>
       <input type="email" id="friendEmail" name="friendEmail" required />
-      <button type="submit">Send Invite</button>
+      <br>
+      <br>
+      <button  class="bg-green-500 px-8 hover:animate-pulse rounded-md" type="submit">Send Invite</button>
     </form>
   </section>
 
   <!-- Section to approve requests to join -->
   <section>
-    <h3>Approve Join Requests</h3>
+    <h3 class="bg-gradient-to-r from-[#dbebc0] to-[#523249]">Approve Join Requests</h3>
     {{#each joinRequests as |request|}}
       <div>
         <p>{{request.userName}} - {{request.userEmail}}</p>
         <form action="/approve-request" method="POST">
           <input type="hidden" name="userId" value="{{request.userId}}" />
-          <button type="submit">Approve</button>
+          <button class="bg-green-500" type="submit">Approve</button>
         </form>
       </div>
     {{/each}}
