@@ -10,8 +10,8 @@
   </section>
 
   <!-- Section to see the discussion history -->
-  <section>
-    <h3 class="text-[#dbebc0] text-center  pb-8">&#128204 Discussion History &#128204 </h3>
+  <section class="text-[#dbebc0]">
+    <h3 class="text-center  pb-8">&#128204 Discussion History &#128204 </h3>
       {{#each club.discussions as |discussion|}}
         <p>{{discussion.text}} </p>
         <p>  - {{discussion.user.name}} posted on {{date discussion.created_on "MM/DD/YYYY"}}</p>
