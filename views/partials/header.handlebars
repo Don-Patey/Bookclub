@@ -1,22 +1,72 @@
-<h1 class="bg-[#c3b299] mt-6 p-8 font-serif tracking-widest text-center">Welcome to BookMark</h1>
-<h2 class="bg-[#c3b299] tracking-widest text-center font-serif">Your Online Book Club<br><br><span class="italic">Read - Discuss - Grow</span> </h2>
+<!-- Main heading for the website, styled with background color, padding, and centered text -->
+<h1 class="bg-[#c3b299] mt-6 p-8 font-serif tracking-widest text-center">Welcome
+  to BookMark</h1>
 
+<!-- Subheading with a slogan, styled similarly to the main heading -->
+<h2 class="bg-[#c3b299] tracking-widest text-center font-serif">Your Online Book
+  Club<br /><br /><span class="italic">Read - Discuss - Grow</span>
+</h2>
+
+<!-- Navigation bar for the website -->
 <nav>
+<<<<<<< Updated upstream
+  <!-- Unordered list for navigation links, displayed as a row and centered -->
   <ul class="flex flex-row gap-8 justify-center list-none">
-    <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"><a href="/">Home</a></li>
-    <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"><a href="/bookListPage/">Books</a></li>
+
+    <!-- Navigation items styled with background color, rounded borders, and hover effects -->
+    <li
+      class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"
+    ><a href="/">Home</a></li>
+    <li
+      class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"
+    ><a href="/bookListPage/">Books</a>
+    </li>
+
+    <!-- Conditional rendering based on whether the user is logged in -->
     {{#if loggedIn}}
-      <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"><a href="" id="createClub">Create Club</a></li>
-      <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"><a href="/createBook">Create Book</a></li>
-      <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"><a href="" id="logout">Logout</a></li>
+      <!-- Additional navigation items available only to logged-in users -->
+      <li
+        class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"
+      ><a href="" id="createClub">Create Club</a></li>
+      <li
+        class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"
+      ><a href="/createBook">Create Book</a></li>
+      <li
+        class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"
+      ><a href="" id="logout">Logout</a></li>
     {{else}}
-      <li class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"><a href="/login">Login</a></li>
+      <!-- Login link for users who are not logged in -->
+      <li
+        class="rounded-full py-2 px-10 bg-[#cbd4c2] hover:bg-[#dbebc0] hover:animate-pulse"
+      ><a href="/login">Login</a></li>
+=======
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/bookListPage/">Books</a></li>
+    {{#if loggedIn}}
+      <li><a href="" id="createClub">Create Club</a></li>
+      <li><a href="/logout" id="logout">Logout</a></li>
+    {{else}}
+      <li><a href="/login">Login</a></li>
+>>>>>>> Stashed changes
     {{/if}}
   </ul>
 </nav>
 
+<<<<<<< Updated upstream
+<!-- Horizontal rule to visually separate the navigation from the content below -->
+<hr />
+
+<!-- Conditional loading of JavaScript files for logged-in user functionality -->
+{{#if loggedIn}}
+  <!-- Logout script that handles the logout process -->
+  <script src="/js/logout.js"></script>
+  <!-- Event handler scripts for creating books and clubs -->
+  <script src="/js/createHandlers.js"></script>
+=======
 <hr />
 {{#if loggedIn}}
   <script src="/js/logout.js"></script>
-  <script src="/js/createHandlers.js"></script>
+  <script src="/js/createClub.js"></script>
+>>>>>>> Stashed changes
 {{/if}}

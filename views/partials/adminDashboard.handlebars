@@ -1,25 +1,56 @@
 <!-- adminDashboard.handlebars -->
+<<<<<<< Updated upstream
 <section>
+    <!-- Title for the Admin Dashboard with a background gradient style -->
   <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Admin Dashboard</h2>
-  <!-- Form to update club name -->
+  <!-- Form for updating the club's information -->
   <form action="/update-club" method="POST">
-  
+
+      <!-- Input for updating the club name, pre-filled with the current name -->
     <label for="clubName" class="underline font-bold text-[#dbebc0]">Club Name:<br></label>
     <input class="border-solid border-4 border-[#c3b299]" type="text" id="clubName" name="clubName" value="{{club.name}}" required />
     <br>
     <br>
-
+    <!-- Textarea for updating the club's description, pre-filled with the current description -->
     <label for="clubDescription" class="underline font-bold text-[#dbebc0]">Club Description:</label>
     <br>
     <textarea cols="65" rows="5" class="border-solid border-4 border-[#c3b299]" id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
     <br>
     <br>
-
+    <!-- Dropdown to select the club type, with the current type pre-selected -->
     <label for="clubType" class="underline font-bold text-[#dbebc0]">Club Type:</label>
     <br>
     <br>
     <select id="clubType" name="clubType" required>
+      <!-- Options for club type; 'selected' is used to mark the current club type -->
+=======
+<div>
+  <h2>Admin Dashboard</h2>
+  <p>{{loggedIn}}</p>
+  <!-- Form to update club name -->
+  <form action="/update-club" method="POST">
+    <label for="clubName">Club Name:</label>
+    <input type="text" id="clubName" name="clubName" value="{{club.name}}" required />
+    <button type="submit">Update Club Name</button>
+  </form>
 
+  <!-- Form to update club description -->
+  <form action="/update-club-description" method="POST">
+    <label for="clubDescription">Club Description:</label>
+    <textarea id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
+    <button type="submit">Update Description</button>
+  </form>
+=======
+    <input type="text" id="clubName" name="clubName" value="{{club.name}}" required />
+    
+    <label for="clubDescription">Club Description:</label>
+    <textarea id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
+>>>>>>> Stashed changes
+
+    <label for="clubType">Club Type:</label>
+    <select id="clubType" name="clubType" required>
+
+>>>>>>> Stashed changes
       <option value="fiction" {{#compare club.type '===''fiction'}}selected{{/compare}}>Fiction</option>
       <option value="non-fiction" {{#compare club.type '===' 'non-fiction'}}selected{{/compare}}>Non-Fiction</option>
       <!-- Add other club types as needed -->

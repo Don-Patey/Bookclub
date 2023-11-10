@@ -1,8 +1,11 @@
 const router = require("express").Router();
 const { Clubs, Discussions, Books, Users, Memberships } = require("../models");
 const withAuth = require("../utils/auth");
+<<<<<<< Updated upstream
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+=======
+>>>>>>> Stashed changes
 
 // Get all clubs in a list
 router.get("/", async (req, res) => {
@@ -65,7 +68,11 @@ router.get("/getClub/:id", async (req, res) => {
         isAdmin: club.club_admin_id == req.session.user_id,
         isMember: isUserMember(req.session.user_id, club.memberships),
       };
+<<<<<<< Updated upstream
         //  res.status(200).json(club);
+=======
+      //    res.status(200).json(club);
+>>>>>>> Stashed changes
       res.render("clubPage", {
         club,
         userRole,
@@ -104,9 +111,16 @@ router.get("/bookListPage", async (req, res) => {
 
     const books = allBooks.map((book) => book.get({ plain: true }));
 
+<<<<<<< Updated upstream
    res.render("bookListPage", {
       books,
       loggedIn: req.session.loggedIn,
+=======
+    console.log("books: ", books);
+
+    res.render("bookListPage", {
+      books,
+>>>>>>> Stashed changes
     });
   } catch (err) {
     console.log(err);
@@ -114,6 +128,7 @@ router.get("/bookListPage", async (req, res) => {
   }
 });
 
+<<<<<<< Updated upstream
 //go to create book page
 router.get("/createBook", (req, res) => {
   if (!req.session.loggedIn) {
@@ -154,6 +169,8 @@ router.post("/update-club", async (req, res) => {
   }
 });
 
+=======
+>>>>>>> Stashed changes
 // assign a book to a club
 router.post("/assign-book", async (req, res) => {
   const { bookId, clubId } = req.body; // Extract the bookId and clubId from the POST request body
@@ -193,6 +210,7 @@ router.post("/assign-book", async (req, res) => {
   }
 });
 
+<<<<<<< Updated upstream
 // Setup Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -222,6 +240,8 @@ router.post("/send-invites", (req, res) => {
     }
   });
 });
+=======
+>>>>>>> Stashed changes
 const isUserMember = (userId, membership) => {
   for (var i = 0; i < membership.length; i++) {
     if (membership[i].id == userId) {

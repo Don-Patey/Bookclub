@@ -1,35 +1,81 @@
-<!-- memberView.handlebars -->
+<!-- This is the main container for the member dashboard view -->
 <div>
-  <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249] underline">Member Dashboard -- <span class="italic text-s"> Welcome Back!</span></h2>
-  <!-- Section to see the current book -->
+<<<<<<< Updated upstream
+  <!-- Dashboard heading with a gradient background and a welcome message -->
+  <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249] underline">Member
+    Dashboard --
+    <span class="italic text-s"> Welcome Back!</span></h2>
+
+  <!-- Section displaying details of the current book the club is reading -->
   <section class="text-[#dbebc0]">
-    <h3 class="bold underline text-[#dbebc0] ">Current Book&#128214</h3>
-      <p><span class="underline font-bold">Title:</span><br> {{club.book.name}}</p>
-      <p><span class="underline font-bold">Author:</span><br> {{club.author}}</p>
-      <p><span class="underline font-bold">Description:</span><br> {{club.book.description}}</p>  
+    <h3 class="bold underline text-[#dbebc0]">Current Book&#128214</h3>
+    <p><span class="underline font-bold">Title:</span><br />
+      {{club.book.name}}</p>
+    <p><span class="underline font-bold">Author:</span><br />
+      {{club.author}}</p>
+    <p><span class="underline font-bold">Description:</span><br />
+      {{club.book.description}}</p>
+  </section>
+
+  <!-- Section displaying the history of discussions within the club -->
+  <section class="text-[#dbebc0]">
+    <h3 class="text-center pb-8">&#128204 Discussion History &#128204 </h3>
+    {{#each club.discussions as |discussion|}}
+      <p>{{discussion.text}} </p>
+      <p>
+        -
+        {{discussion.user.name}}
+        posted on
+        {{date discussion.created_on "MM/DD/YYYY"}}</p>
+    {{/each}}
+=======
+  <h2>Member Dashboard</h2>
+  <p>{{loggedIn}}</p>
+  <!-- Section to see the current book -->
+  <section>
+    <h3>Current Book</h3>
+      <p>Title: {{club.book.name}}</p>
+      <p>Author: {{club.author}}</p>
+      <p>Description: {{club.book.description}}</p>  
   </section>
 
   <!-- Section to see the discussion history -->
-  <section class="text-[#dbebc0]">
-    <h3 class="text-center  pb-8">&#128204 Discussion History &#128204 </h3>
+  <section>
+    <h3>Discussion History</h3>
       {{#each club.discussions as |discussion|}}
         <p>{{discussion.text}} </p>
         <p>  - {{discussion.user.name}} posted on {{date discussion.created_on "MM/DD/YYYY"}}</p>
       {{/each}}
+>>>>>>> Stashed changes
   </section>
 
-  <!-- Form to add a message to the discussion -->
+  <!-- Form allowing members to contribute a new message to the ongoing discussion -->
   <section>
-
     <h3 class="text-[#dbebc0]">Add to Discussion</h3>
-
-      <input type="hidden" name="clubId" value="{{club.id}}" id="clubId" />
-      <input type="hidden" name="bookId" value="{{club.current_book_id}}" id="book_id" />
-      <textarea class="border-solid border-4 border-[#c3b299]" cols="70" rows="8" name="message" id="message" required placeholder="Your message"></textarea>
-      <button type="submit" id="addMessage" class="animate-pulse bg-blue-500 mx-8 px-6 text-white">Post Message</button>
+    <input type="hidden" name="clubId" value="{{club.id}}" id="clubId" />
+    <input
+      type="hidden"
+      name="bookId"
+      value="{{club.current_book_id}}"
+      id="book_id"
+    />
+    <textarea
+      class="border-solid border-4 border-[#c3b299]"
+      cols="70"
+      rows="8"
+      name="message"
+      id="message"
+      required
+      placeholder="Your message"
+    ></textarea>
+    <button
+      type="submit"
+      id="addMessage"
+      class="animate-pulse bg-blue-500 mx-8 px-6 text-white"
+    >Post Message</button>
   </section>
 
-  <!-- Option to leave the club -->
+  <!-- Option for members to leave the club, with a button styled in a warning color -->
   <section>
     <form action="/leave-club" method="POST">
       <input type="hidden" name="clubId" value="{{clubId}}" />
@@ -38,4 +84,5 @@
   </section>
 </div>
 
+<!-- Link to a JavaScript file for additional functionality on the member dashboard -->
 <script src="/js/memberView.js"></script>

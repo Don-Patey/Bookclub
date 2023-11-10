@@ -1,42 +1,99 @@
+<!-- Container for the forms, organized in a row -->
 <div class="row">
+  <!-- Column for the login form, taking up half the row in a medium-sized screen -->
   <div class="col-md-6">
-        <h2 class="bg-[#c3b299] shadow-xl">Login <span class="text-sm italic">and continue your journey!</span> </h2>
+    <!-- Title for the login form with a background color and shadow effect -->
+    <h2 class="bg-[#c3b299] shadow-xl">Login
+      <span class="text-sm italic">and continue your journey!</span>
+    </h2>
 
+    <!-- Login form with classes for styling -->
     <form class="form login-form">
+      <!-- Form group for the email input -->
       <div class="form-group">
-        <label for="email-login" class="text-[#dbebc0] font-bold">E-mail:</label>
-        <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-black form-input" type="text" id="email-login" />
+        <label
+          for="email-login"
+          class="text-[#dbebc0] font-bold"
+        >E-mail:</label>
+        <input
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-black form-input"
+          type="text"
+          id="email-login"
+        />
       </div>
+      <!-- Form group for the password input -->
       <div class="form-group">
-        <label for="password-login" class="text-[#dbebc0] font-bold">Password:</label>
-        <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-black form-input" type="password" id="password-login" />
+        <label
+          for="password-login"
+          class="text-[#dbebc0] font-bold"
+        >Password:</label>
+        <input
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-black form-input"
+          type="password"
+          id="password-login"
+        />
       </div>
+      <!-- Button to submit the login form -->
       <div class="form-group">
-        <button class="text-white justify-start shadow-md bg-green-500 animate-bounce px-16 rounded full btn btn-primary" type="submit">Login&#128273</button>
+        <button
+          class="text-white justify-start shadow-md bg-green-500 animate-bounce px-16 rounded full btn btn-primary"
+          type="submit"
+        >Login&#128273</button>
       </div>
     </form>
   </div>
-  <div class="col-md-6">
-    <h2 class="bg-[#c3b299] shadow-xl">Sign-up<span class="text-sm italic">and get to reading!</span></h2>
 
+  <!-- Column for the sign-up form, also taking up half the row in a medium-sized screen -->
+  <div class="col-md-6">
+    <!-- Title for the sign-up form with similar styling to the login title -->
+    <h2 class="bg-[#c3b299] shadow-xl">Sign-up<span class="text-sm italic">and
+        get to reading!</span></h2>
+
+    <!-- Sign-up form with classes for styling -->
     <form class="form signup-form">
+      <!-- Form group for the name input -->
       <div class="form-group">
-        <label for="name-signup" class="text-[#dbebc0] font-bold" >Name:</label>
-        <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-blackform-input" type="text" id="name-signup" />
+        <label for="name-signup" class="text-[#dbebc0] font-bold">Name:</label>
+        <input
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-blackform-input"
+          type="text"
+          id="name-signup"
+        />
       </div>
+      <!-- Form group for the email input -->
       <div class="form-group">
-        <label for="email-signup" class="text-[#dbebc0] font-bold">E-mail:</label>
-        <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-black form-input" type="text" id="email-signup" />
+        <label
+          for="email-signup"
+          class="text-[#dbebc0] font-bold"
+        >E-mail:</label>
+        <input
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-black form-input"
+          type="text"
+          id="email-signup"
+        />
       </div>
+      <!-- Form group for the password input -->
       <div class="form-group">
-        <label for="password-signup" class="text-[#dbebc0] font-bold">Password:</label>
-        <input class="block mb-2 text-sm font-medium text-gray-900 dark:text-black form-input" type="password" id="password-signup" />
+        <label
+          for="password-signup"
+          class="text-[#dbebc0] font-bold"
+        >Password:</label>
+        <input
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-black form-input"
+          type="password"
+          id="password-signup"
+        />
       </div>
+      <!-- Button to submit the sign-up form -->
       <div class="form-group">
-        <button class="bg-green-500 animate-bounce px-16 rounded fullbtn btn-primary text-white" type="submit">Sign-up&#128221</button>
+        <button
+          class="bg-green-500 animate-bounce px-16 rounded fullbtn btn-primary text-white"
+          type="submit"
+        >Sign-up&#128221</button>
       </div>
     </form>
   </div>
 </div>
 
+<!-- Link to a JavaScript file that likely contains the logic to handle user login and sign-up actions -->
 <script src="./js/login.js"></script>

@@ -1,16 +1,24 @@
-{{!-- Check if the user is not a member --}}
+<<<<<<< Updated upstream
+<!-- This div will contain all the club-related information styled with a specific text color -->
 <div class="text-[#dbebc0]">
+    <!-- Section for the club's description with a gradient header -->
+=======
+{{!-- Check if the user is not a member --}}
+>>>>>>> Stashed changes
   <div class="book-description">
     <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Club Description</h2>
     <p>{{club.description}}</p>
   </div>
 
+  <!-- Section for displaying the type of book club with a gradient header -->
  <div class="club-type">
     <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Club Type</h2>
     <p class="text-xl font-bold">{{club.type}}</p>
   </div>
 
+  <!-- Section for showing the current book the club is reading -->
   <div class="current-book">
+<<<<<<< Updated upstream
     <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Current Book</h2>
       <p><span class="font-bold underline">Title:</span><br> 
         {{club.book.name}}
@@ -21,19 +29,30 @@
       <p><span class="font-bold underline">Description:</span><br> 
         {{club.book.description}}
       </p>  
+=======
+    <h2>Current Book</h2>
+      <p>Title: {{club.book.name}}</p>
+      <p>Author: {{club.author}}</p>
+      <p>Description: {{club.book.description}}</p>  
+>>>>>>> Stashed changes
   </section>
   </div>
 
- 
-
+  <!-- Section for joining the club -->
   <div class="join-request">
+    <!-- Check if the user is logged in -->
     {{#if loggedIn}}
+    <!-- If logged in, show a button that allows them to request to join the club -->
     <a href="" class="bg-green-500 px-8 rounded-md hover:animate-pulse" id="join" data-club-id="{{club.id}}">Request to Join the Discussion!</a>
     {{else}}
+    <!-- If not logged in, prompt the user to log in to be able to join the club -->
     <p>You must be logged in to join</p><a href="/login" class="bg-green-500 px-8 rounded-md hover:animate-pulse">Login</a>
     {{/if}}
   </div>
+<<<<<<< Updated upstream
 </div>
 
-
+<!-- Include a JavaScript file that probably handles the 'Request to Join' action -->
 <script src="/js/join.js"></script>
+=======
+>>>>>>> Stashed changes

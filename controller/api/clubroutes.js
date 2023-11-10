@@ -24,6 +24,7 @@ router.post("/", async (req, res) => {
 // Update club by ID
 router.put("/:id", async (req, res) => {
   const clubId = req.params.id;
+<<<<<<< Updated upstream
   const updateData = req.body;
 
   try {
@@ -35,6 +36,20 @@ router.put("/:id", async (req, res) => {
       res.status(404).json({ message: "Club not found" });
     } else {
       res.json({ message: "Club updated", updateData });
+=======
+  const { name, description, type, club_admin_id, current_book_id } = req.body;
+  try {
+    const updateClub = await Clubs.update(
+      { name, description, type, club_admin_id, current_book_id },
+      {
+        where: { id: clubId },
+      }
+    );
+    if (updateClub[0] === 0) {
+      res.status(404).json({ message: "Club not found" });
+    } else {
+      res.json({ message: "Club updated" });
+>>>>>>> Stashed changes
     }
   } catch (err) {
     console.error(err.message);

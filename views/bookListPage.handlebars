@@ -1,11 +1,24 @@
+<!-- Include the header partial that contains common elements like navigation and branding -->
 {{> header}}
 
+<!-- Define a list that will contain individual book items -->
 <ul class="book-list">
 
+<<<<<<< Updated upstream
+    <!-- Title for the book list with an underline and a background gradient -->
     <h2 class="underline bg-gradient-to-r from-[#c3b299] to-[#523249] -mb-12">Welcome to the BookMark Library!</h2>
+    <!-- Unordered list for books with no list-style and a background gradient -->
     <ul class="list-none bg-gradient-to-r from-[#c3b299] to-[#cbd4c2] -mt-17 px-6">
+      <!-- Iterate through each book provided by the Handlebars context -->
       {{#each books}}
+      <!-- List item for an individual book -->
+=======
+    <h2>Books</h2>
+    <ul>
+      {{#each books}}
+>>>>>>> Stashed changes
       <li>
+        <!-- Include the book partial template for each book's details -->
         {{> book }}
       </li>
       {{/each}}

@@ -1,20 +1,41 @@
+<<<<<<< Updated upstream
+<!-- This anchor tag creates a clickable link that takes the user to a specific club's page.
+The 'href' attribute dynamically sets the URL to include the club's ID. -->
 <a href="/getClub/{{id}}">
+
+  <!-- Club name is displayed as a heading with a background gradient. -->
   <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">{{name}}</h2>
 
+  <!-- Container for the club's details with a specific text color. -->
   <div class="text-[#dbebc0]">
-  <p><span class="font-bold">Description:</span>
-    <br> 
-    {{description}}
+
+    <!-- Club description with the label 'Description:' in bold. -->
+    <p><span class="font-bold">Description:</span>
+      <br />
+      {{description}}
+      <!-- Dynamically filled with the club's description. -->
     </p>
 
-  <p><span class="font-bold">Type:</span>
-    <br> 
-    {{type}}
+    <!-- Club type with the label 'Type:' in bold. -->
+    <p><span class="font-bold">Type:</span>
+      <br />
+      {{type}}
+      <!-- Dynamically filled with the club's type. -->
+
     </p>
 
-  <p><span class="font-bold">Currently Reading:</span>
-    <br>
-     <span class="italic">{{book.name}}</span>
-     </p>
-  </div>   
+    <!-- Current book the club is reading with the label 'Currently Reading:' in bold. -->
+    <p><span class="font-bold">Currently Reading:</span>
+      <br />
+      <span class="italic">{{book.name}}</span>
+      <!-- Dynamically filled with the current book's name, styled in italic. -->
+    </p>
+  </div>
+=======
+<a href="/getClub/{{id}}">
+  <h2>Club Name: {{name}}</h2>
+  <p>Description: {{description}}</p>
+  <p>Type: {{type}}</p>
+  <p>Currently Reading: {{book.name}}</p>
+>>>>>>> Stashed changes
 </a>

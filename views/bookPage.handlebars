@@ -1,30 +1,45 @@
+<!-- Insert the common header across the site -->
 {{> header}}
 
+<!-- Title of the page with a gradient background -->
 <h1 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Book Page</h1>
 
+<!-- Display the book's title with a specific text color -->
 <h2 class="text-[#dbebc0]">Title: {{book.name}}</h2>
+<!-- Display the book's description with a specific text color -->
 <p class="text-[#dbebc0]">{{book.description}}</p>
 
+<<<<<<< Updated upstream
+<!-- Conditional content that only displays if the adminClubs array is not empty -->
+{{#if adminClubs}}
+  <!-- Form for assigning a book to a club -->
+=======
 {{#if adminClubs}}
   <!-- Code to display when the adminClubs array is not empty -->
+>>>>>>> Stashed changes
   <form action="/assign-book" method="POST">
+    <!-- Hidden input to send the book's ID not visible to the user -->
     <input type="hidden" name="bookId" value="{{book.id}}" />
+    <!-- Dropdown to select which club to assign the book to -->
     <label class="text-[#dbebc0] font-bold underline" for="club">Assign to Club:</label>
     <br>
     <select name="clubId">
+      <!-- Loop through each club the user administers -->
       {{#each adminClubs}}
         <option value="{{this.id}}">{{this.name}}</option>
       {{/each}}
     </select>
     <br>
     <br>
+    <!-- Button to submit the form -->
     <button class="bg-green-500 rounded-md hover:animate-pulse px-8 text-white" type="submit">Assign Book</button>
   </form>
 {{else}}
-  <!-- Code to display when the adminClubs array is empty -->
+  <!-- Message displayed if the user is not an admin of any clubs -->
   <p class="bg-red-500 text-center rounded-md animate-pulse text-white">You cannot assign this book to a club because you are not an admin of any clubs. Ensure you are logged in and have created a club.</p>
 {{/if}}
 
+<!-- Inline script that shows an alert if there was a successful book assignment -->
 <script>
   window.onload = function() {
     {{#if success}}
