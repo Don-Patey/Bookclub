@@ -1,6 +1,5 @@
 <!-- This is the main container for the member dashboard view -->
 <div>
-<<<<<<< Updated upstream
   <!-- Dashboard heading with a gradient background and a welcome message -->
   <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249] underline">Member
     Dashboard --
@@ -28,25 +27,6 @@
         posted on
         {{date discussion.created_on "MM/DD/YYYY"}}</p>
     {{/each}}
-=======
-  <h2>Member Dashboard</h2>
-  <p>{{loggedIn}}</p>
-  <!-- Section to see the current book -->
-  <section>
-    <h3>Current Book</h3>
-      <p>Title: {{club.book.name}}</p>
-      <p>Author: {{club.author}}</p>
-      <p>Description: {{club.book.description}}</p>  
-  </section>
-
-  <!-- Section to see the discussion history -->
-  <section>
-    <h3>Discussion History</h3>
-      {{#each club.discussions as |discussion|}}
-        <p>{{discussion.text}} </p>
-        <p>  - {{discussion.user.name}} posted on {{date discussion.created_on "MM/DD/YYYY"}}</p>
-      {{/each}}
->>>>>>> Stashed changes
   </section>
 
   <!-- Form allowing members to contribute a new message to the ongoing discussion -->

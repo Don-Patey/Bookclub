@@ -9,14 +9,9 @@
 <!-- Display the book's description with a specific text color -->
 <p class="text-[#dbebc0]">{{book.description}}</p>
 
-<<<<<<< Updated upstream
 <!-- Conditional content that only displays if the adminClubs array is not empty -->
 {{#if adminClubs}}
   <!-- Form for assigning a book to a club -->
-=======
-{{#if adminClubs}}
-  <!-- Code to display when the adminClubs array is not empty -->
->>>>>>> Stashed changes
   <form action="/assign-book" method="POST">
     <!-- Hidden input to send the book's ID not visible to the user -->
     <input type="hidden" name="bookId" value="{{book.id}}" />
