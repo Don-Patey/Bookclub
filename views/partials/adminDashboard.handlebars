@@ -1,5 +1,4 @@
 <!-- adminDashboard.handlebars -->
-<<<<<<< Updated upstream
 <section>
     <!-- Title for the Admin Dashboard with a background gradient style -->
   <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Admin Dashboard</h2>
@@ -23,29 +22,6 @@
     <br>
     <select id="clubType" name="clubType" required>
       <!-- Options for club type; 'selected' is used to mark the current club type -->
-=======
-<div>
-  <h2>Admin Dashboard</h2>
-  <p>{{loggedIn}}</p>
-  <!-- Form to update club name -->
-  <form action="/update-club" method="POST">
-    <label for="clubName">Club Name:</label>
-    <input type="text" id="clubName" name="clubName" value="{{club.name}}" required />
-    <button type="submit">Update Club Name</button>
-  </form>
-
-  <!-- Form to update club description -->
-  <form action="/update-club-description" method="POST">
-    <label for="clubDescription">Club Description:</label>
-    <textarea id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
-    <button type="submit">Update Description</button>
-  </form>
-=======
-    <input type="text" id="clubName" name="clubName" value="{{club.name}}" required />
-    
-    <label for="clubDescription">Club Description:</label>
-    <textarea id="clubDescription" name="clubDescription" required>{{club.description}}</textarea>
->>>>>>> Stashed changes
 
     <label for="clubType">Club Type:</label>
     <select id="clubType" name="clubType" required>
