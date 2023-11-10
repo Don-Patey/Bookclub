@@ -6,8 +6,13 @@ const Clubs = require("../../models/Clubs");
 // Create a new book
 router.post("/", async (req, res) => {
   try {
+<<<<<<< Updated upstream
     const { name, description, author } = req.body;
     const newBook = await Books.create({ name, description, author });
+=======
+    const { name, description } = req.body;
+    const newBook = await Books.create({ name, description });
+>>>>>>> Stashed changes
     res.json(newBook);
   } catch (err) {
     console.error(err.message);
@@ -50,7 +55,10 @@ router.get("/:id", async (req, res) => {
       res.render("bookPage", {
         book: book,
         adminClubs: adminClubs,
+<<<<<<< Updated upstream
         loggedIn: req.session.loggedIn,
+=======
+>>>>>>> Stashed changes
       });
     }
   } catch (err) {

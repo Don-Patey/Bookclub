@@ -1,26 +1,27 @@
 <html lang="en">
   <head>
+    <!-- Define the character set for the document -->
     <meta charset="UTF-8" />
+    <!-- Ensure proper rendering and touch zooming on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the website that appears in the browser tab -->
     <title>BookMark</title>
-    <!-- Add your stylesheet links here -->
-    <link href="/css/style.css" type="text/css" rel="stylesheet"> 
-     <style>
-      :root {
-        --ash-gray: #cbd4c2;
-        --tea-green: #dbebc0;
-        --khaki: #c3b299;
-        --rose-taupe: #815355;
-        --violet-jtc: #523249;
-
-      }
-    </style> 
+    <!-- Link to an external CSS file for styling the website -->
+    <link href="/css/style.css" type="text/css" rel="stylesheet" />
+    <!-- Internal style block defining custom CSS variables for colors -->
+    <style>
+      :root { --ash-gray: #cbd4c2; --tea-green: #dbebc0; --khaki: #c3b299;
+      --rose-taupe: #815355; --violet-jtc: #523249; }
+    </style>
   </head>
-  <body class="prose prose-zinc max-w-none bg-[var(--violet-jtc)]"> 
+  <!-- Body with classes for styling; background color uses a CSS variable -->
+  <body class="prose prose-zinc max-w-none bg-[var(--violet-jtc)]">
+    <!-- Container for the main content with max-width set to none -->
     <div class="container mx-auto w-full">
-    {{{body}}}
+      <!-- Placeholder where Handlebars.js will inject content dynamically -->
+      {{{body}}}
     </div>
-    <!-- Add your scripts at the bottom of the body to improve load performance -->
-    
+    <!-- Scripts are typically added at the end of the body to ensure the HTML is loaded before executing the JavaScript -->
+
   </body>
 </html>

@@ -1,26 +1,38 @@
+<!-- Insert the header partial which likely contains the navigation and branding -->
 {{> header}}
 
+<!-- Heading for the 'Create a New Book' page, styled with a gradient background, underline, and padding -->
 <h1 class="bg-gradient-to-r from-[#c3b299] to-[#523249] underline decoration-[#815355] px-8" >Create a New Book</h1>
+
+<!-- Form for book creation with the ID 'bookForm' -->
 <form id="bookForm">
+  <!-- Label for the book name input, styled with a specific text color and margin -->
   <label for="name" class="text-[#dbebc0] mx-8">Name:</label>
   <br>
+  <!-- Text input for the book name, with left margin and styled borders -->
   <input class="ml-6 border-solid border-4 border-[#c3b299]" type="text" id="name" name="name" required /><br />
   <br>
 
+  <!-- Label for the book description textarea, styled similarly to the name label -->
   <label for="description" class="text-[#dbebc0] mx-8">Description:</label>
   <br>
+  <!-- Textarea for the book description, allowing multiple lines of text -->
   <textarea rows="4" cols="65" class="ml-6 border-solid border-4 border-[#c3b299]" id="description" name="description" required></textarea><br />
   <br>
 
+  <!-- Label for the author name input -->
   <label for="author" class="text-[#dbebc0] mx-8">Author:</label>
   <br>
+  <!-- Text input for the author's name -->
   <input class="ml-6 border-solid border-4 border-[#c3b299]" type="text" id="author" name="author" required /><br />
   <br>
 
-
+  <!-- Submit button for the form, styled with a background color, margin, padding, and hover effect -->
   <input type="submit" value="Add it to the BookMark Library!" class="text-black bg-[#cbd4c2] mx-8 px-6 cursor-pointer hover:animate-pulse" />
 </form>
 
+<!-- Empty div where a response message will be displayed after form submission -->
 <div id="responseMessage"></div>
 
+<!-- Link to a JavaScript file that likely handles the book creation logic -->
 <script src="./js/addBook.js"></script>
