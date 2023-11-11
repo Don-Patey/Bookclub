@@ -1,0 +1,33 @@
+<!-- Insert the header partial which likely contains the navigation and branding -->
+{{> header}}
+
+  <section id="add-club">
+
+      <!-- Input for updating the club name, pre-filled with the current name -->
+    <label for="clubName" class="underline font-bold text-[#dbebc0]">Club Name:<br></label>
+    <input class="border-solid border-4 border-[#c3b299]" type="text" id="clubName" name="clubName" required />
+    <br>
+    <br>
+    <!-- Textarea for updating the club's description, pre-filled with the current description -->
+    <label for="clubDescription" class="underline font-bold text-[#dbebc0]">Club Description:</label>
+    <br>
+    <textarea cols="65" rows="5" class="border-solid border-4 border-[#c3b299]" id="clubDescription" name="clubDescription" required></textarea>
+    <br>
+    <br>
+    <!-- Dropdown to select the club type, with the current type pre-selected -->
+    <label for="clubType" class="underline font-bold text-[#dbebc0]">Club Type:</label>
+    <br>
+    <br>
+    <select id="clubType" name="clubType" required>
+      <option value="fiction">Fiction</option>
+      <option value="non-fiction">Non-Fiction</option>
+      <!-- Add other club types as needed -->
+    </select>
+    <br>
+    <br>
+    <button class="bg-green-500 px-8 hover:animate-pulse rounded-md text-white" id="createClub">Create Club</button>
+    
+    <script src="./js/createClub.js"></script>
+  </section>
+
+  

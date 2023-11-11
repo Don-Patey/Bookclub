@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Books = require("../../models/Books"); // Import the model (Books.js) to use its database functions.
-const Clubs = require("../../models/Clubs");
+// Import the model (Books.js) to use its database functions.
+const { Books, Clubs } = require("../../models"); 
+
 
 // Create a new book
 router.post("/", async (req, res) => {

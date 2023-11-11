@@ -1,4 +1,4 @@
-// addBook.js
+// Handles the button click to add a book to the library
 document.getElementById("bookForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const name = document.getElementById("name").value;

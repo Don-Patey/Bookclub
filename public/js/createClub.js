@@ -1,26 +1,23 @@
+
+//Handles the button click to add a new club to the list
 const createClubHandler = async (event) => {
   event.preventDefault();
 
   console.log("Creating club...");
 
-  const admin_id = await fetchUserId();
+  const clubName = document.querySelector('#clubName').value.trim();
+  const description = document.querySelector('#clubDescription').value.trim();
+  const typeOption = document.querySelector('#clubType');
+  const type = typeOption.options[typeOption.selectedIndex].text;
 
-  const { name, description, type, club_admin_id, current_book_id } = {
-    name: "Your New Club",
-    description: "This is your new club! Create a thoughtful description.",
-    type: "Non-Fiction",
-    club_admin_id: admin_id,
-    current_book_id: 1,
-  };
+  console.log(type);
 
   const response = await fetch("/api/clubs", {
     method: "POST",
     body: JSON.stringify({
-      name,
-      description,
-      type,
-      club_admin_id,
-      current_book_id,
+      name: clubName,
+      description: description,
+      type: type,
     }),
     headers: { "Content-Type": "application/json" },
   });
@@ -33,14 +30,6 @@ const createClubHandler = async (event) => {
   }
 };
 
-async function fetchUserId() {
-  const response = await fetch("/getUserId");
-  if (!response.ok) {
-    throw new Error("Could not fetch user ID");
-  }
-  const data = await response.json();
-  return data.user_id;
-}
 
 document
   .querySelector("#createClub")

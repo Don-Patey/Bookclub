@@ -3,7 +3,7 @@
     <!-- Title for the Admin Dashboard with a background gradient style -->
   <h2 class="bg-gradient-to-r from-[#c3b299] to-[#523249]">Admin Dashboard</h2>
   <!-- Form for updating the club's information -->
-  <form action="/update-club" method="POST">
+  <form>
 
       <!-- Input for updating the club name, pre-filled with the current name -->
     <label for="clubName" class="underline font-bold text-[#dbebc0]">Club Name:<br></label>
@@ -22,19 +22,14 @@
     <br>
     <select id="clubType" name="clubType" required>
       <!-- Options for club type; 'selected' is used to mark the current club type -->
-
-    <label for="clubType">Club Type:</label>
-    <select id="clubType" name="clubType" required>
-
->>>>>>> Stashed changes
-      <option value="fiction" {{#compare club.type '===''fiction'}}selected{{/compare}}>Fiction</option>
-      <option value="non-fiction" {{#compare club.type '===' 'non-fiction'}}selected{{/compare}}>Non-Fiction</option>
+      <option value="Fiction" {{#compare club.type '===' 'Fiction'}}selected{{/compare}}>Fiction</option>
+      <option value="Non-Fiction" {{#compare club.type '===' 'Non-Fiction'}}selected{{/compare}}>Non-Fiction</option>
       <!-- Add other club types as needed -->
     </select>
     <br>
     <br>
-    <input type="hidden" name="clubId" value="{{club.id}}" />
-    <button class="bg-green-500 px-8 hover:animate-pulse rounded-md text-white" type="submit">Update Club</button>
+    <input type="hidden" id="clubID" name="clubId" value="{{club.id}}" />
+    <button class="bg-green-500 px-8 hover:animate-pulse rounded-md text-white" id="updateClub">Update Club</button>
   </form>
 
   <!-- Section to show the current book -->
@@ -42,11 +37,12 @@
     <h3 class="bg-gradient-to-r from-[#dbebc0] to-[#523249]">Current Book</h3>
     <p class="text-lg italic font-bold text-[#dbebc0]">{{club.book.name}} by {{club.book.author}}</p>
     <!-- Button to navigate to book list page -->
+    <input type="hidden" id="bookID" name="bookId" value="{{club.current_book_id}}" />
     <a href="/bookListPage" role="button" class="bg-green-500 rounded-md px-8 hover:animate-pulse text-white">Select Current Book</a>
   </section>
 
   <!-- Section for discussion history -->
-  <section>
+  <section class="text-[#dbebc0]">
     <h3 class="bg-gradient-to-r from-[#dbebc0] to-[#523249]">Discussion History</h3>
       {{#each club.discussions as |discussion|}}
         <p>{{discussion.text}} </p>
@@ -56,11 +52,11 @@
   </section>
 
   <!-- Form to add a message to the discussion -->
-  <form action="/add-message" method="POST">
+  <form>
     <label for="message" class="text-[#dbebc0]">Your Message:</label>
     <br>
     <textarea rows="6" cols="65" class="border-solid border-4 border-[#c3b299]" id="message" name="message" required></textarea>
-    <button type="submit" class="bg-sky-500 ml-4 px-8 hover:animate-pulse rounded-md text-white">Post Message</button>
+    <button class="bg-sky-500 ml-4 px-8 hover:animate-pulse rounded-md text-white" id="addMessage">Post Message</button>
   </form>
 
   <!-- Section to send invites to friends -->
@@ -89,10 +85,5 @@
       </div>
     {{/each}}
   </section>
-</div>
-
-
-
-
-
-</div>
+</section>
+<script src="/js/adminDashboard.js"></script>

@@ -12,7 +12,7 @@
 <!-- Conditional content that only displays if the adminClubs array is not empty -->
 {{#if adminClubs}}
   <!-- Form for assigning a book to a club -->
-  <form action="/assign-book" method="POST">
+  <form action="/api/clubs/assign-book" method="POST">
     <!-- Hidden input to send the book's ID not visible to the user -->
     <input type="hidden" name="bookId" value="{{book.id}}" />
     <!-- Dropdown to select which club to assign the book to -->
@@ -34,11 +34,4 @@
   <p class="bg-red-500 text-center rounded-md animate-pulse text-white">You cannot assign this book to a club because you are not an admin of any clubs. Ensure you are logged in and have created a club.</p>
 {{/if}}
 
-<!-- Inline script that shows an alert if there was a successful book assignment -->
-<script>
-  window.onload = function() {
-    {{#if success}}
-      alert('Book successfully assigned to the club.');
-    {{/if}}
-  };
-</script>
+

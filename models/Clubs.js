@@ -34,7 +34,7 @@ Clubs.init(
         },
         current_book_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: 'books',
                 key: 'id',
