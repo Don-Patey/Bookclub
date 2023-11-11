@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Clubs, Discussions, Books, Users, Memberships } = require("../models");
-const withAuth = require("../utils/auth");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
@@ -29,6 +28,8 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 // Get club by ID
 router.get("/getClub/:id", async (req, res) => {
@@ -65,6 +66,7 @@ router.get("/getClub/:id", async (req, res) => {
         isAdmin: club.club_admin_id == req.session.user_id,
         isMember: isUserMember(req.session.user_id, club.memberships),
       };
+
       //  res.status(200).json(club);
       res.render("clubPage", {
         club,
@@ -86,13 +88,28 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-//get a user's id
-router.get("/getUserId", (req, res) => {
-  if (req.session && req.session.user_id) {
-    res.json({ user_id: req.session.user_id });
-  } else {
-    res.status(401).json({ message: "Not logged in" });
+
+//Add a club to the list
+router.get("/addClub", (req, res) => {
+  if (req.session.loggedIn) {
+    res.render("addClub", {
+      loggedIn: req.session.loggedIn,
+    });
+    return;
   }
+  res.redirect("/");
+});
+
+
+// Add a book to the library
+router.get('/createBook', (req, res) => {
+  if (req.session.loggedIn) {
+    res.render("createBook", {
+      loggedIn: req.session.loggedIn,
+    });
+    return;
+  }
+  res.redirect("/");
 });
 
 //get book list
@@ -108,49 +125,11 @@ router.get("/bookListPage", async (req, res) => {
 
     res.render("bookListPage", {
       books,
+      loggedIn: req.session.loggedin,
     });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
-  }
-});
-
-// assign a book to a club
-router.post("/assign-book", async (req, res) => {
-  const { bookId, clubId } = req.body; // Extract the bookId and clubId from the POST request body
-  const userId = req.session.user_id;
-
-  if (!userId) {
-    // If the user is not logged in, redirect to the login page or send an error message
-    return res
-      .status(403)
-      .send("You must be logged in to perform this action.");
-  }
-
-  try {
-    // Find the club by ID where the logged-in user is the admin
-    const club = await Clubs.findOne({
-      where: {
-        id: clubId,
-        club_admin_id: userId, // Ensure that the logged-in user is the admin of the club
-      },
-    });
-
-    if (!club) {
-      // If the club is not found or the logged-in user is not the admin, send an error message
-      return res
-        .status(404)
-        .send("Club not found or you are not the admin of this club.");
-    }
-
-    // Update the club's current book ID with the new book ID
-    await club.update({ current_book_id: bookId });
-
-    // Redirect to a confirmation page, or render a success message
-    res.json({ message: "Book successfully assigned to the club." });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Failed to assign book to club");
   }
 });
 
@@ -175,17 +154,18 @@ router.post("/send-invites", (req, res) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
       res.status(500).send("Error sending invite.");
     } else {
-      console.log("Email sent: " + info.response);
       res.status(200).send("Invite sent successfully!");
     }
   });
 });
+
+// check to see if the user is am member of the club
 const isUserMember = (userId, membership) => {
   for (var i = 0; i < membership.length; i++) {
-    if (membership[i].id == userId) {
+  
+    if (membership[i].user_id == userId) {
       return true;
     }
   }

@@ -46,21 +46,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Update a user by ID
-router.put("/:id", async (req, res) => {
-  try {
-    const user = await Users.findByPk(req.params.id);
-    if (!user) {
-      res.status(404).json({ message: "User not found" });
-    } else {
-      await user.update(req.body);
-      res.status(200).json(user);
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // Delete a user by ID
 router.delete("/:id", async (req, res) => {
   try {

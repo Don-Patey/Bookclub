@@ -1,3 +1,4 @@
+//Handles the button click to add a message to the discussion board
 const addMessageHandler = async (event) => {
     event.preventDefault();
 
@@ -24,4 +25,22 @@ const addMessageHandler = async (event) => {
     }
 };
 
+//Handles the button click to leave the club
+const handleLeaveClub = async (event) => {
+    event.preventDefault();
+
+    const clubId = document.querySelector('#clubId').value.trim();
+
+    const response = await fetch('/api/memberships/' + clubId, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        document.location.replace(`/getClub/${clubId}`);
+    } else {
+        alert(response.statusText);
+    }
+};
+
 document.querySelector('#addMessage').addEventListener('click', addMessageHandler);
+document.querySelector('#leaveClub').addEventListener('click', handleLeaveClub);
